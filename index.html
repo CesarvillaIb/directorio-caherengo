@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Directorio General | Caherengo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+header {
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+header p {
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+.container {
+    padding: 30px;
+}
+
+.search-box {
+    max-width: 520px;
+    margin: 0 auto 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #111827;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 6px 0;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.copy {
+    background: #020617;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.copy:hover {
+    background: #1e293b;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: #2563eb;
+    font-size: 12px;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.actions a {
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.mail { background: #1e40af; }
+.call { background: #0f766e; }
+.wa { background: #15803d; }
+
+.actions a:hover {
+    opacity: 0.9;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📘 Directorio General</h1>
+    <p>Caherengo | Uso interno</p>
+</header>
+
+<div class="container">
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 Buscar por nombre, puesto, área u oficina..." onkeyup="filterCards()">
+    </div>
+
+    <div class="cards" id="cards">
+
+        <!-- ===== PERSONA ===== -->
+        <div class="card">
+            <h3>Joel Omar Cuellar Blanco</h3>
+            <p><strong>Puesto:</strong> Secretario de Relaciones y Conflictos</p>
+            <p><strong>Área:</strong> Administrativo</p>
+            <p><strong>Oficina:</strong> Zapopan</p>
+
+            <p><strong>Correo:</strong></p>
+            <div class="copy" onclick="copyText('joel.cuellar@caherengo.mx')">
+                joel.cuellar@caherengo.mx
+            </div>
+
+            <p><strong>Teléfono:</strong></p>
+            <div class="copy" onclick="copyText('3321836481')">
+                33 2183 6481
+            </div>
+
+            <span class="badge">Administrativo</span>
+
+            <div class="actions">
+                <a class="mail" href="mailto:joel.cuellar@caherengo.mx">✉️ Correo</a>
+                <a class="call" href="tel:3321836481">📞 Llamar</a>
+                <a class="wa" href="https://wa.me/523321836481" target="_blank">💬 WhatsApp</a>
+            </div>
+        </div>
+
+        <!-- COPIA ESTE BLOQUE PARA MÁS PERSONAS -->
+
+    </div>
+</div>
+
+<footer>
+    Directorio interno • Administrado por Sistemas
+</footer>
+
+<script>
+function filterCards() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        cards[i].style.display = text.includes(input) ? "block" : "none";
+    }
+}
+
+function copyText(text) {
+    navigator.clipboard.writeText(text);
+    alert("Copiado: " + text);
+}
+</script>
+
+</body>
+</html>
