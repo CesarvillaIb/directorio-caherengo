@@ -19,7 +19,19 @@ header {
     text-align: center;
 }
 
-.container { padding: 30px; }
+header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+header p {
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+.container {
+    padding: 30px;
+}
 
 .search-box {
     max-width: 520px;
@@ -32,6 +44,7 @@ header {
     font-size: 16px;
     border-radius: 14px;
     border: none;
+    outline: none;
 }
 
 .cards {
@@ -48,39 +61,33 @@ header {
     transition: transform 0.2s;
 }
 
-.card:hover { transform: translateY(-6px); }
+.card:hover {
+    transform: translateY(-6px);
+}
 
-.card h3 { margin: 0 0 10px; }
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.card p {
+    margin: 6px 0;
+    font-size: 14px;
+}
 
 .copy {
     background: #020617;
     padding: 8px 10px;
     border-radius: 8px;
     font-size: 13px;
+    word-break: break-all;
     cursor: pointer;
     margin-bottom: 8px;
-    position: relative;
 }
 
-.copy:hover { background: #1e293b; }
-
-/* TOOLTIP */
-.copy::after {
-    content: "Copiar";
-    position: absolute;
-    top: -28px;
-    right: 10px;
-    background: #2563eb;
-    color: #fff;
-    font-size: 11px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    opacity: 0;
-    transition: 0.2s;
-    pointer-events: none;
+.copy:hover {
+    background: #1e293b;
 }
-
-.copy:hover::after { opacity: 1; }
 
 .badge {
     display: inline-block;
@@ -102,7 +109,7 @@ header {
     text-decoration: none;
     text-align: center;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 14px;
     color: #fff;
 }
@@ -111,9 +118,14 @@ header {
 .call { background: #0f766e; }
 .wa { background: #15803d; }
 
+.actions a:hover {
+    opacity: 0.9;
+}
+
 footer {
     text-align: center;
     padding: 20px;
+    font-size: 13px;
     opacity: 0.6;
 }
 </style>
@@ -128,92 +140,86 @@ footer {
 
 <div class="container">
 
-<div class="search-box">
-<input type="text" id="search" placeholder="🔍 Buscar..." onkeyup="filterCards()">
-</div>
+    <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 Buscar por nombre, puesto, área u oficina..." onkeyup="filterCards()">
+    </div>
 
-<div class="cards">
+    <div class="cards" id="cards">
 
-<!-- ===== PERSONA ===== -->
-<div class="card">
-<h3>Joel Omar Cuellar Blanco</h3>
-<p><strong>Puesto:</strong> Secretario de Relaciones y Conflictos</p>
+        <!-- ===== PERSONA ===== -->
+        <div class="card">
+            <h3>Joel Omar Cuellar Blanco</h3>
+            <p><strong>Puesto:</strong> Secretario de Relaciones y Conflictos</p>
+            <p><strong>Área:</strong> Administrativo</p>
+            <p><strong>Oficina:</strong> Zapopan</p>
 
-<div class="copy" onclick="copyText('joel.cuellar@caherengo.mx')">
-joel.cuellar@caherengo.mx
-</div>
+            <p><strong>Correo:</strong></p>
+            <div class="copy" onclick="copyText('joel.cuellar@caherengo.mx')">
+                joel.cuellar@caherengo.mx
+            </div>
 
-<div class="copy" onclick="copyText('3321836481')">
-33 2183 6481
-</div>
+            <p><strong>Teléfono:</strong></p>
+            <div class="copy" onclick="copyText('3321836481')">
+                33 2183 6481
+            </div>
 
-<span class="badge">Administrativo</span>
+            <span class="badge">Administrativo</span>
 
-<div class="actions">
-<a class="mail" href="mailto:joel.cuellar@caherengo.mx">✉️</a>
-<a class="call" href="tel:3321836481">📞</a>
-<a class="wa" href="https://wa.me/523321836481" target="_blank">💬</a>
-</div>
-</div>
+            <div class="actions">
+                <a class="mail" href="mailto:joel.cuellar@caherengo.mx">✉️ Correo</a>
+                <a class="call" href="tel:3321836481">📞 Llamar</a>
+                <a class="wa" href="https://wa.me/523321836481" target="_blank">💬 WhatsApp</a>
+            </div>
+        </div>
+    <!-- ===== PERSONA ===== -->
+            <div class="card">
+            <h3>Pauo Cesar Villa Ibarra</h3>
+            <p><strong>Puesto:</strong>Sistemas</p>
+            <p><strong>Área:</strong> Administrativo</p>
+            <p><strong>Oficina:</strong> Zapopan</p>
 
-<!-- ===== PERSONA ===== -->
-<div class="card">
-<h3>Julio César Lara Aldaz</h3>
-<p><strong>Puesto:</strong> Centro de Control</p>
+            <p><strong>Correo:</strong></p>
+            <div class="copy" onclick="copyText('paulo.ibarra@caherengo.com.mx')">
+                paulo.ibarra@caherengo.com.mx
+            </div>
+                    <p><strong>Correo:</strong></p>
+            <div class="copy" onclick="copyText('auxsistemas@caherengo.mx')">
+             auxsistemas@caherengo.mx
+            </div>
 
-<div class="copy" onclick="copyText('centrodecontrol@caherengo.mx')">
-centrodecontrol@caherengo.mx
-</div>
+            <p><strong>Teléfono:</strong></p>
+            <div class="copy" onclick="copyText('3334582309')">
+                33 3458 2309
+            </div>
 
-<div class="copy" onclick="copyText('3318658783')">
-33 1865 8783
-</div>
+            <span class="badge">Administrativo</span>
 
-<span class="badge">Operaciones</span>
+            <div class="actions">
+                <a class="mail" href="mailto:paulo.ibarra@caherengo.com.mx">✉️ Correo</a>
+                <a class="call" href="tel:3334582309">📞 Llamar</a>
+                <a class="wa" href="https://wa.me/523334582309" target="_blank">💬 WhatsApp</a>
+            </div>
+        </div>
 
-<div class="actions">
-<a class="mail" href="mailto:centrodecontrol@caherengo.mx">✉️</a>
-<a class="call" href="tel:3318658783">📞</a>
-<a class="wa" href="https://wa.me/523318658783" target="_blank">💬</a>
-</div>
-</div>
 
-<!-- ===== PERSONA ===== -->
-<div class="card">
-<h3>Carlos Andrés Cruz Ayala</h3>
-<p><strong>Puesto:</strong> Almacén</p>
+        <!-- COPIA ESTE BLOQUE PARA CADA PERSONA -->
 
-<div class="copy" onclick="copyText('almacen@caherengo.mx')">
-almacen@caherengo.mx
-</div>
-
-<div class="copy" onclick="copyText('3318658784')">
-33 1865 8784
-</div>
-
-<span class="badge">Almacén</span>
-
-<div class="actions">
-<a class="mail" href="mailto:almacen@caherengo.mx">✉️</a>
-<a class="call" href="tel:3318658784">📞</a>
-<a class="wa" href="https://wa.me/523318658784" target="_blank">💬</a>
-</div>
-</div>
-
-<!-- AGREGA AQUÍ LOS DEMÁS REGISTROS IGUAL -->
-</div>
+    </div>
 </div>
 
 <footer>
-Directorio interno • Administrado por Sistemas
+    Directorio interno • Administrado por Sistemas
 </footer>
 
 <script>
 function filterCards() {
     let input = document.getElementById("search").value.toLowerCase();
-    document.querySelectorAll(".card").forEach(card => {
-        card.style.display = card.innerText.toLowerCase().includes(input) ? "" : "none";
-    });
+    let cards = document.getElementsByClassName("card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        cards[i].style.display = text.includes(input) ? "" : "none";
+    }
 }
 
 function copyText(text) {
