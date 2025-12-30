@@ -75,6 +75,7 @@ header p {
     font-size: 14px;
 }
 
+/* ===== BLOQUE COPIABLE ===== */
 .copy {
     background: #020617;
     padding: 8px 10px;
@@ -83,10 +84,34 @@ header p {
     word-break: break-all;
     cursor: pointer;
     margin-bottom: 8px;
+    position: relative;
 }
 
 .copy:hover {
     background: #1e293b;
+}
+
+/* Tooltip */
+.copy::after {
+    content: "Copiar";
+    position: absolute;
+    top: -32px;
+    right: 10px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.copy:hover::after {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .badge {
@@ -141,7 +166,7 @@ footer {
 <div class="container">
 
     <div class="search-box">
-        <input type="text" id="search" placeholder="🔍 Buscar por nombre, puesto, área u oficina..." onkeyup="filterCards()">
+        <input type="text" id="search" placeholder="🔍 Buscar por nombre, puesto o área..." onkeyup="filterCards()">
     </div>
 
     <div class="cards" id="cards">
@@ -171,215 +196,9 @@ footer {
                 <a class="wa" href="https://wa.me/523321836481" target="_blank">💬 WhatsApp</a>
             </div>
         </div>
-    <!-- ===== PERSONA ===== -->
-            <div class="card">
-            <h3>Pauo Cesar Villa Ibarra</h3>
-            <p><strong>Puesto:</strong>Sistemas</p>
-            <p><strong>Área:</strong> Administrativo</p>
-            <p><strong>Oficina:</strong> Zapopan</p>
 
-            <p><strong>Correo:</strong></p>
-            <div class="copy" onclick="copyText('paulo.ibarra@caherengo.com.mx')">
-                paulo.ibarra@caherengo.com.mx
-            </div>
-                    <p><strong>Correo:</strong></p>
-            <div class="copy" onclick="copyText('auxsistemas@caherengo.mx')">
-             auxsistemas@caherengo.mx
-            </div>
-
-            <p><strong>Teléfono:</strong></p>
-            <div class="copy" onclick="copyText('3334582309')">
-                33 3458 2309
-            </div>
-
-            <span class="badge">Administrativo</span>
-
-            <div class="actions">
-                <a class="mail" href="mailto:paulo.ibarra@caherengo.com.mx">✉️ Correo</a>
-                <a class="call" href="tel:3334582309">📞 Llamar</a>
-                <a class="wa" href="https://wa.me/523334582309" target="_blank">💬 WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Brenda Marlene González Valencia</h3>
-    <p><strong>Puesto:</strong> Administración Operativa</p>
-    <p><strong>Área:</strong> Administrativo</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('administracionoperativa@caherengo.mx')">
-        administracionoperativa@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3318658792')">
-        33 1865 8792
-    </div>
-
-    <span class="badge">Administración</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:administracionoperativa@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3318658792">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523318658792" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Luis Oswaldo González Santos</h3>
-    <p><strong>Puesto:</strong> Facturación y Cobranza</p>
-    <p><strong>Área:</strong> Finanzas</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('centrodeinteligencia@caherengo.mx')">
-        centrodeinteligencia@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3328324200')">
-        33 2832 4200
-    </div>
-
-    <span class="badge">Cobranza</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:centrodeinteligencia@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3328324200">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523328324200" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Luis David Arellano Meza</h3>
-    <p><strong>Puesto:</strong> Contraloría</p>
-    <p><strong>Área:</strong> Finanzas</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('contraloria@caherengo.mx')">
-        contraloria@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3322569744')">
-        33 2256 9744
-    </div>
-
-    <span class="badge">Contraloría</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:contraloria@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3322569744">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523322569744" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Sandra Leticia García Alba</h3>
-    <p><strong>Puesto:</strong> Atención a Clientes</p>
-    <p><strong>Área:</strong> Administrativo</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('atencionclientes@caherengo.mx')">
-        atencionclientes@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3321833339')">
-        33 2183 3339
-    </div>
-
-    <span class="badge">Clientes</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:atencionclientes@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3321833339">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523321833339" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Alejandro Galván Vital</h3>
-    <p><strong>Puesto:</strong> Facturación y Cobranza</p>
-    <p><strong>Área:</strong> Finanzas</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('facturas@caherengo.mx')">
-        facturas@caherengo.mx
-    </div>
-
-    <span class="badge">Facturación</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:facturas@caherengo.mx">✉️ Correo</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Manuel Alejandro Martínez Rodríguez</h3>
-    <p><strong>Puesto:</strong> Revista</p>
-    <p><strong>Área:</strong> Calidad</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('calidadoperativa@caherengo.mx')">
-        calidadoperativa@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3328320990')">
-        33 2832 0990
-    </div>
-
-    <span class="badge">Calidad</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:calidadoperativa@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3328320990">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523328320990" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-<!-- ===== PERSONA ===== -->
-<div class="card">
-    <h3>Saúl Arellano Arellano</h3>
-    <p><strong>Puesto:</strong> Director General</p>
-    <p><strong>Área:</strong> Dirección</p>
-    <p><strong>Oficina:</strong> Zapopan</p>
-
-    <p><strong>Correo:</strong></p>
-    <div class="copy" onclick="copyText('direcciongeneral@caherengo.mx')">
-        direcciongeneral@caherengo.mx
-    </div>
-
-    <p><strong>Teléfono:</strong></p>
-    <div class="copy" onclick="copyText('3326290941')">
-        33 2629 0941
-    </div>
-
-    <span class="badge">Dirección</span>
-
-    <div class="actions">
-        <a class="mail" href="mailto:direcciongeneral@caherengo.mx">✉️ Correo</a>
-        <a class="call" href="tel:3326290941">📞 Llamar</a>
-        <a class="wa" href="https://wa.me/523326290941" target="_blank">💬 WhatsApp</a>
-    </div>
-</div>
-
-
-
-        <!-- COPIA ESTE BLOQUE PARA CADA PERSONA -->
-
+        <!-- SIGUE COPIANDO ESTE BLOQUE PARA LOS DEMÁS -->
+        
     </div>
 </div>
 
