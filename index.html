@@ -8,130 +8,211 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
+:root{
+ --blue:#2563eb;
+ --bg:#020617;
+ --card:#0f172a;
+ --muted:#94a3b8;
+}
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#0f172a,#020617);
-  color:#fff;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:linear-gradient(180deg,#0f172a,#020617);
+ color:#fff;
 }
 header{
-  background:linear-gradient(90deg,#2563eb,#1e40af);
-  padding:30px 20px;
-  text-align:center;
+ background:linear-gradient(90deg,#2563eb,#1e40af);
+ padding:28px 20px;
+ text-align:center;
 }
 .search-box{
-  display:flex;
-  justify-content:center;
-  margin:30px 0;
+ display:flex;
+ justify-content:center;
+ margin:26px 0 10px;
 }
 .search-box input{
-  width:90%;
-  max-width:420px;
-  padding:12px 18px;
-  border-radius:25px;
-  border:none;
+ width:90%;
+ max-width:420px;
+ padding:12px 18px;
+ border-radius:24px;
+ border:none;
+ outline:none;
+}
+.filters{
+ display:flex;
+ gap:8px;
+ justify-content:center;
+ flex-wrap:wrap;
+ margin-bottom:20px;
+}
+.filter{
+ padding:6px 14px;
+ border-radius:16px;
+ background:#020617;
+ border:1px solid #334155;
+ cursor:pointer;
+ font-size:12px;
+}
+.filter.active{
+ background:var(--blue);
+ border-color:var(--blue);
 }
 .container{
-  padding:20px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
+ padding:20px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:20px;
+ justify-content:center;
 }
 .card{
-  background:rgba(15,23,42,.95);
-  border-radius:16px;
-  padding:20px;
-  width:320px;
-  position:relative;
+ background:rgba(15,23,42,.95);
+ border-radius:18px;
+ padding:20px;
+ width:320px;
+ position:relative;
+ animation:fadeIn .25s ease;
+}
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(6px)}
+ to{opacity:1;transform:none}
+}
+.badge{
+ display:inline-block;
+ font-size:11px;
+ padding:4px 10px;
+ border-radius:14px;
+ background:#020617;
+ border:1px solid #334155;
+ margin-top:4px;
+ color:var(--muted);
 }
 .admin{
-  position:absolute;
-  top:12px;
-  right:12px;
-  display:flex;
-  gap:8px;
+ position:absolute;
+ top:12px;
+ right:12px;
+ display:flex;
+ gap:10px;
 }
 .admin i{
-  cursor:pointer;
-  opacity:.7;
+ font-size:14px;
+ cursor:pointer;
+ opacity:.6;
+ transition:.2s;
 }
+.admin i:hover{opacity:1}
 .copy{
-  background:#020617;
-  padding:8px 12px;
-  border-radius:10px;
-  cursor:pointer;
-  margin-top:6px;
+ background:#020617;
+ padding:8px 12px;
+ border-radius:10px;
+ margin-top:8px;
+ cursor:pointer;
+ position:relative;
+ transition:.2s;
+}
+.copy:hover{background:#020617cc}
+.copy::after{
+ content:"Copiar";
+ position:absolute;
+ top:-26px;
+ right:10px;
+ background:var(--blue);
+ padding:3px 8px;
+ border-radius:8px;
+ font-size:11px;
+ opacity:0;
+ transition:.2s;
+}
+.copy:hover::after{opacity:1}
+.copy.copied::after{
+ content:"✔ Copiado";
+ background:#16a34a;
+ opacity:1;
 }
 .actions{
-  display:flex;
-  gap:10px;
-  margin-top:14px;
+ display:flex;
+ gap:10px;
+ margin-top:14px;
 }
 .actions a{
-  flex:1;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
-  color:#fff;
+ flex:1;
+ text-align:center;
+ padding:10px;
+ border-radius:12px;
+ color:#fff;
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
 .chat{background:#22c55e}
 
+.highlight{
+ background:rgba(37,99,235,.18);
+ padding:0 4px;
+ border-radius:6px;
+ font-weight:600;
+}
+
 .fab{
-  position:fixed;
-  bottom:24px;
-  right:24px;
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  background:#2563eb;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  cursor:pointer;
+ position:fixed;
+ bottom:24px;
+ right:24px;
+ width:56px;
+ height:56px;
+ border-radius:50%;
+ background:var(--blue);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:26px;
+ cursor:pointer;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
 /* MODALES */
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+ backdrop-filter:blur(4px);
+ display:none;
+ align-items:center;
+ justify-content:center;
 }
 .box{
-  background:#020617;
-  padding:20px;
-  border-radius:18px;
-  width:90%;
-  max-width:380px;
+ background:#020617;
+ padding:20px;
+ border-radius:18px;
+ width:90%;
+ max-width:380px;
+ animation:scaleIn .2s ease;
+}
+@keyframes scaleIn{
+ from{transform:scale(.95);opacity:0}
+ to{transform:none;opacity:1}
 }
 .box input,select{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #334155;
-  background:#020617;
-  color:#fff;
+ width:100%;
+ margin-top:10px;
+ padding:12px;
+ border-radius:10px;
+ border:1px solid #334155;
+ background:#020617;
+ color:#fff;
 }
 .modal-actions{
-  display:flex;
-  gap:10px;
-  margin-top:16px;
+ display:flex;
+ gap:10px;
+ margin-top:16px;
 }
-.save{background:#2563eb;color:#fff}
-.cancel{background:#020617;color:#94a3b8;border:1px solid #334155}
 button{
-  flex:1;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
+ flex:1;
+ padding:10px;
+ border-radius:10px;
+ border:none;
+ cursor:pointer;
 }
+.save{background:var(--blue);color:#fff}
+.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
 </style>
 </head>
 
@@ -139,11 +220,20 @@ button{
 
 <header>
 <h1>📘 Directorio General</h1>
-<p>Cahrengo | Uso interno</p>
+<p>Cahrengo · Uso interno</p>
 </header>
 
 <div class="search-box">
-<input id="search" placeholder="Buscar..." onkeyup="filter()">
+<input id="search" placeholder="Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
+</div>
+
+<div class="filters">
+<div class="filter active" onclick="setOffice('')">Todas</div>
+<div class="filter" onclick="setOffice('Zapopan')">Zapopan</div>
+<div class="filter" onclick="setOffice('Tlajomulco')">Tlajomulco</div>
+<div class="filter" onclick="setOffice('Aguascalientes')">Aguascalientes</div>
+<div class="filter" onclick="setOffice('Guerrero Negro')">Guerrero Negro</div>
+<div class="filter" onclick="setOffice('Mérida')">Mérida</div>
 </div>
 
 <div class="container" id="cards"></div>
@@ -154,15 +244,15 @@ button{
 <div class="modal" id="formModal">
 <div class="box">
 <h3 id="formTitle">Agregar</h3>
-<input id="nombre" placeholder="Nombre">
+<input id="nombre" placeholder="Nombre completo">
 <input id="puesto" placeholder="Puesto">
 <input id="area" placeholder="Área">
 <select id="oficina">
 <option>Zapopan</option>
 <option>Tlajomulco</option>
 <option>Aguascalientes</option>
-<option>Mérida</option>
 <option>Guerrero Negro</option>
+<option>Mérida</option>
 </select>
 <input id="correo" placeholder="Correo">
 <input id="telefono" placeholder="Teléfono">
@@ -179,7 +269,7 @@ button{
 <h3>Acceso administrador</h3>
 <input id="pass" type="password" placeholder="Clave">
 <div class="modal-actions">
-<button class="save" onclick="checkPass()">Entrar</button>
+<button class="save" onclick="checkPass()">Continuar</button>
 <button class="cancel" onclick="closePass()">Cancelar</button>
 </div>
 </div>
@@ -199,13 +289,19 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const col=collection(db,"directorio");
 
-let data=[], editId=null, afterPass=null;
+let allData=[],editId=null,afterPass=null,officeFilter="";
 
 onSnapshot(col,s=>{
- data=[];
- s.forEach(d=>data.push({id:d.id,...d.data()}));
- render(data);
+ allData=[];
+ s.forEach(d=>allData.push({id:d.id,...d.data()}));
+ applyFilters();
 });
+
+function highlight(text){
+ const q=search.value.toLowerCase();
+ if(!q) return text;
+ return text.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
+}
 
 function render(list){
  cards.innerHTML="";
@@ -216,11 +312,12 @@ function render(list){
    <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
    <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
   </div>
-  <h3>${p.nombre}</h3>
-  <p>${p.puesto}</p>
-  <p>${p.area} · ${p.oficina}</p>
-  <div class="copy" onclick="copy('${p.correo}')">${p.correo}</div>
-  <div class="copy" onclick="copy('${p.telefono}')">${p.telefono}</div>
+  <h3>${highlight(p.nombre)}</h3>
+  <p>${highlight(p.puesto)}</p>
+  <p>${highlight(p.area)}</p>
+  <span class="badge">${p.oficina}</span>
+  <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
+  <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
   <div class="actions">
    <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
    <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
@@ -230,16 +327,26 @@ function render(list){
  });
 }
 
-window.filter=()=>{
- const v=search.value.toLowerCase();
- render(data.filter(p=>
-  p.nombre.toLowerCase().includes(v)||
-  p.area.toLowerCase().includes(v)||
-  p.telefono.includes(v)
+window.copyText=(el,text)=>{
+ navigator.clipboard.writeText(text);
+ el.classList.add("copied");
+ setTimeout(()=>el.classList.remove("copied"),1200);
+}
+
+window.applyFilters=()=>{
+ const q=search.value.toLowerCase();
+ render(allData.filter(p=>
+  (!officeFilter||p.oficina===officeFilter)&&
+  (p.nombre+p.area+p.correo+p.telefono+p.oficina).toLowerCase().includes(q)
  ));
 }
 
-window.copy=t=>navigator.clipboard.writeText(t);
+window.setOffice=o=>{
+ officeFilter=o;
+ document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
+ event.target.classList.add("active");
+ applyFilters();
+}
 
 window.askPass=fn=>{
  afterPass=fn;
@@ -248,14 +355,11 @@ window.askPass=fn=>{
 
 window.checkPass=()=>{
  if(pass.value==="KR@+0s117"){
-  closePass();
-  afterPass();
- }else{
+  passModal.style.display="none";
   pass.value="";
+  afterPass();
  }
 }
-
-window.closePass=()=>passModal.style.display="none";
 
 window.openForm=()=>{
  editId=null;
@@ -264,9 +368,9 @@ window.openForm=()=>{
 }
 
 window.edit=id=>{
- const p=data.find(x=>x.id===id);
+ const p=allData.find(x=>x.id===id);
  editId=id;
- Object.assign(nombre,{value:p.nombre});
+ nombre.value=p.nombre;
  puesto.value=p.puesto;
  area.value=p.area;
  oficina.value=p.oficina;
@@ -296,6 +400,7 @@ window.remove=async id=>{
 }
 
 window.closeForm=()=>formModal.style.display="none";
+window.closePass=()=>passModal.style.display="none";
 </script>
 
 </body>
