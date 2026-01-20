@@ -110,8 +110,10 @@ header{
  position:relative;
  transition:.2s;
   /* NUEVO */
-  word-break: break-all; /* rompe palabras largas */
-  overflow-wrap: anywhere; /* soporte adicional para navegadores */
+ display: block;           /* importante */
+  max-width: 100%;          /* para que respete el ancho de la tarjeta */
+  word-break: break-word;   /* rompe palabras largas */
+  overflow-wrap: break-word;/* soporte adicional */
 }
 .copy:hover{background:#020617cc}
 .copy::after{
