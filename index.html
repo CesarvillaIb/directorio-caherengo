@@ -5,132 +5,174 @@
 <title>Directorio General | Cahrengo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ICONOS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
 body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(180deg,#0f172a,#020617);
-    color:#fff;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:linear-gradient(180deg,#0f172a,#020617);
+ color:#fff;
 }
 header{
-    background:linear-gradient(90deg,#2563eb,#1e40af);
-    padding:25px;
-    text-align:center;
+ background:linear-gradient(90deg,#2563eb,#1e40af);
+ padding:25px;
+ text-align:center;
 }
 .search-box{
-    display:flex;
-    justify-content:center;
-    margin:20px;
+ display:flex;
+ justify-content:center;
+ margin:20px;
 }
 .search-box input{
-    width:90%;
-    max-width:420px;
-    padding:12px 18px;
-    border-radius:25px;
-    border:none;
+ width:90%;
+ max-width:420px;
+ padding:12px 18px;
+ border-radius:25px;
+ border:none;
 }
 .container{
-    padding:20px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
+ padding:20px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:20px;
 }
 .card{
-    background:#020617;
-    border-radius:16px;
-    padding:20px;
-    width:320px;
-    position:relative;
+ background:#020617;
+ border-radius:16px;
+ padding:20px;
+ width:320px;
+ position:relative;
+ animation:fadeIn .4s ease;
 }
-.card h3{margin:0 0 10px}
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:none}
+}
 .copy{
-    background:#0f172a;
-    padding:8px 12px;
-    border-radius:10px;
-    font-size:13px;
-    margin-top:5px;
-    cursor:pointer;
+ background:#0f172a;
+ padding:8px 12px;
+ border-radius:10px;
+ font-size:13px;
+ margin-top:6px;
+ cursor:pointer;
+ position:relative;
+}
+.copy::after{
+ content:"Copiar";
+ position:absolute;
+ top:-26px;
+ right:8px;
+ font-size:11px;
+ background:#2563eb;
+ padding:4px 8px;
+ border-radius:8px;
+ opacity:0;
+ transition:.2s;
+}
+.copy:hover::after{opacity:1}
+.copy.copied::after{
+ content:"Copiado";
+ background:#16a34a;
+ opacity:1;
 }
 .actions{
-    display:flex;
-    gap:10px;
-    margin-top:12px;
+ display:flex;
+ gap:10px;
+ margin-top:12px;
 }
 .actions a{
-    flex:1;
-    text-align:center;
-    padding:10px;
-    border-radius:12px;
-    color:#fff;
-    text-decoration:none;
+ flex:1;
+ text-align:center;
+ padding:10px;
+ border-radius:12px;
+ color:#fff;
+ text-decoration:none;
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
 .chat{background:#22c55e}
 
-/* BOTONES EDITAR / ELIMINAR */
+/* ICONOS ADMIN */
 .admin-actions{
-    position:absolute;
-    top:10px;
-    right:10px;
-    display:flex;
-    gap:8px;
+ position:absolute;
+ top:10px;
+ right:10px;
+ display:flex;
+ gap:8px;
 }
 .admin-actions i{
-    cursor:pointer;
-    font-size:14px;
-    opacity:.8;
+ font-size:14px;
+ cursor:pointer;
+ opacity:.7;
 }
 .admin-actions i:hover{opacity:1}
 
-/* MODAL */
+/* BOTÓN AGREGAR */
+.add-btn{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ width:56px;
+ height:56px;
+ border-radius:50%;
+ background:#2563eb;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:26px;
+ cursor:pointer;
+}
+
+/* MODALES */
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    justify-content:center;
-    align-items:center;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.7);
+ display:none;
+ justify-content:center;
+ align-items:center;
 }
 .modal-content{
-    background:#020617;
-    padding:20px;
-    border-radius:16px;
-    width:90%;
-    max-width:380px;
+ background:#020617;
+ padding:20px;
+ border-radius:16px;
+ width:90%;
+ max-width:380px;
+ animation:scale .3s ease;
+}
+@keyframes scale{
+ from{transform:scale(.9);opacity:0}
+ to{transform:scale(1);opacity:1}
 }
 .modal-content input{
-    width:100%;
-    padding:10px;
-    margin-bottom:10px;
-    border-radius:10px;
-    border:none;
+ width:100%;
+ padding:10px;
+ margin-bottom:10px;
+ border-radius:10px;
+ border:none;
 }
 .modal-content button{
-    width:100%;
-    padding:10px;
-    border:none;
-    border-radius:12px;
-    background:#2563eb;
-    color:#fff;
-    cursor:pointer;
+ width:100%;
+ padding:10px;
+ border:none;
+ border-radius:12px;
+ margin-top:8px;
+ cursor:pointer;
 }
-.add-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#2563eb;
-    width:56px;
-    height:56px;
-    border-radius:50%;
-    font-size:26px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
+.save{background:#2563eb;color:#fff}
+.cancel{background:#334155;color:#fff}
+
+/* PASSWORD FEEDBACK */
+.success{animation:success .4s}
+.error{animation:error .4s}
+@keyframes success{
+ 0%{background:#16a34a}
+ 100%{background:#020617}
+}
+@keyframes error{
+ 0%{background:#dc2626}
+ 100%{background:#020617}
 }
 </style>
 </head>
@@ -143,90 +185,113 @@ header{
 </header>
 
 <div class="search-box">
-<input type="text" placeholder="Buscar..." onkeyup="filterCards(this.value)">
+<input placeholder="Buscar..." onkeyup="filterCards(this.value)">
 </div>
 
 <div class="container" id="cards"></div>
 
-<div class="add-btn" onclick="openModal()">+</div>
+<div class="add-btn" onclick="requestPassword('add')">+</div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<h3 id="modalTitle">Agregar persona</h3>
+<!-- MODAL PERSONA -->
+<div class="modal" id="personModal">
+<div class="modal-content" id="personBox">
+<h3 id="modalTitle">Persona</h3>
 <input id="nombre" placeholder="Nombre">
 <input id="puesto" placeholder="Puesto">
 <input id="area" placeholder="Área">
 <input id="oficina" placeholder="Oficina">
 <input id="correo" placeholder="Correo">
 <input id="telefono" placeholder="Teléfono">
-<button onclick="savePerson()">Guardar</button>
+<button class="save" onclick="savePerson()">Guardar</button>
+<button class="cancel" onclick="closeModal()">Cancelar</button>
 </div>
 </div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
- apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
- authDomain: "directorio-caherengo.firebaseapp.com",
- projectId: "directorio-caherengo",
- storageBucket: "directorio-caherengo.firebasestorage.app",
- messagingSenderId: "190032909215",
- appId: "1:190032909215:web:905d9cc19978cf50de23aa"
+const firebaseConfig={
+ apiKey:"AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+ authDomain:"directorio-caherengo.firebaseapp.com",
+ projectId:"directorio-caherengo"
 };
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const PASSWORD = "KR@+0s117";
+const PASSWORD="KR@+0s117";
+let people=[],editId=null,action=null;
 
-let people = [];
-let editId = null;
-
-/* CARGAR */
-async function loadPeople(){
+/* CARGA */
+async function load(){
  people=[];
- const snap = await getDocs(collection(db,"personas"));
+ const snap=await getDocs(collection(db,"personas"));
  snap.forEach(d=>people.push({id:d.id,...d.data()}));
- renderCards(people);
+ render(people);
 }
-loadPeople();
+load();
 
 /* RENDER */
-function renderCards(data){
- const c=document.getElementById("cards");
- c.innerHTML="";
+function render(data){
+ cards.innerHTML="";
  data.forEach(p=>{
-  c.innerHTML+=`
+  cards.innerHTML+=`
   <div class="card">
-    <div class="admin-actions">
-      <i class="bi bi-pencil" onclick="editPerson('${p.id}')"></i>
-      <i class="bi bi-trash" onclick="deletePerson('${p.id}')"></i>
-    </div>
-    <h3>${p.nombre}</h3>
-    <p>${p.puesto}</p>
-    <div class="copy">${p.correo}</div>
-    <div class="copy">${p.telefono}</div>
-    <div class="actions">
-      <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
-      <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
-      <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-    </div>
+   <div class="admin-actions">
+    <i class="bi bi-pencil" onclick="requestPassword('edit','${p.id}')"></i>
+    <i class="bi bi-trash" onclick="requestPassword('delete','${p.id}')"></i>
+   </div>
+   <h3>${p.nombre}</h3>
+   <p>${p.puesto}</p>
+
+   <div class="copy" onclick="copyText('${p.correo}',this)">${p.correo}</div>
+   <div class="copy" onclick="copyText('${p.telefono}',this)">${p.telefono}</div>
+
+   <div class="actions">
+    <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+    <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+    <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+   </div>
   </div>`;
  });
 }
 
-/* MODAL */
-window.openModal=()=>{
- editId=null;
- document.getElementById("modal").style.display="flex";
+/* COPIAR */
+window.copyText=(t,e)=>{
+ navigator.clipboard.writeText(t);
+ e.classList.add("copied");
+ setTimeout(()=>e.classList.remove("copied"),1200);
 }
-window.savePerson=async()=>{
- const pass=prompt("Clave de seguridad:");
- if(pass!==PASSWORD)return alert("Clave incorrecta");
 
+/* PASSWORD */
+window.requestPassword=(act,id=null)=>{
+ const pass=prompt("Ingresa la clave:");
+ if(pass!==PASSWORD){
+  document.body.classList.add("error");
+  setTimeout(()=>document.body.classList.remove("error"),400);
+  return;
+ }
+ document.body.classList.add("success");
+ setTimeout(()=>document.body.classList.remove("success"),400);
+
+ action=act;
+ editId=id;
+ if(act==="add"){openModal()}
+ if(act==="edit"){fillForm(id);openModal()}
+ if(act==="delete"){remove(id)}
+}
+
+/* MODAL */
+function openModal(){
+ personModal.style.display="flex";
+}
+window.closeModal=()=>{
+ personModal.style.display="none";
+ editId=null;
+}
+
+/* GUARDAR */
+window.savePerson=async()=>{
  const data={
   nombre:nombre.value,
   puesto:puesto.value,
@@ -235,41 +300,37 @@ window.savePerson=async()=>{
   correo:correo.value,
   telefono:telefono.value
  };
-
  if(editId){
   await updateDoc(doc(db,"personas",editId),data);
  }else{
   await addDoc(collection(db,"personas"),data);
  }
- document.getElementById("modal").style.display="none";
- loadPeople();
+ closeModal();
+ load();
 }
 
-/* EDITAR */
-window.editPerson=(id)=>{
+/* EDIT */
+function fillForm(id){
  const p=people.find(x=>x.id===id);
- editId=id;
- Object.assign(nombre,{value:p.nombre});
- Object.assign(puesto,{value:p.puesto});
- Object.assign(area,{value:p.area});
- Object.assign(oficina,{value:p.oficina});
- Object.assign(correo,{value:p.correo});
- Object.assign(telefono,{value:p.telefono});
- document.getElementById("modal").style.display="flex";
+ nombre.value=p.nombre;
+ puesto.value=p.puesto;
+ area.value=p.area;
+ oficina.value=p.oficina;
+ correo.value=p.correo;
+ telefono.value=p.telefono;
 }
 
-/* ELIMINAR */
-window.deletePerson=async(id)=>{
- const pass=prompt("Clave de seguridad:");
- if(pass!==PASSWORD)return alert("Clave incorrecta");
+/* DELETE */
+async function remove(id){
+ if(!confirm("¿Eliminar este registro?"))return;
  await deleteDoc(doc(db,"personas",id));
- loadPeople();
+ load();
 }
 
 /* FILTRO */
-window.filterCards=(v)=>{
+window.filterCards=v=>{
  v=v.toLowerCase();
- renderCards(people.filter(p=>p.nombre.toLowerCase().includes(v)));
+ render(people.filter(p=>p.nombre.toLowerCase().includes(v)));
 }
 </script>
 
