@@ -47,12 +47,14 @@ header p {
     outline: none;
 }
 
+/* ===== GRID ===== */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 22px;
 }
 
+/* ===== CARD ===== */
 .card {
     background: #111827;
     border-radius: 20px;
@@ -75,8 +77,9 @@ header p {
     font-size: 14px;
 }
 
-/* ===== COPY ===== */
+/* ===== COPY CON TOOLTIP ===== */
 .copy {
+    position: relative;
     background: #020617;
     padding: 8px 10px;
     border-radius: 8px;
@@ -88,6 +91,25 @@ header p {
 
 .copy:hover {
     background: #1e293b;
+}
+
+.copy::after {
+    content: "Copiar";
+    position: absolute;
+    top: -32px;
+    right: 10px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.copy:hover::after {
+    opacity: 1;
 }
 
 /* ===== BADGE ===== */
@@ -116,11 +138,25 @@ header p {
     font-size: 14px;
     color: #fff;
     font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
 }
 
-.mail { background: #2563eb; }
-.call { background: #14b8a6; }
-.wa { background: #22c55e; }
+.actions a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+.mail {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+.call {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.wa {
+    background: linear-gradient(135deg, #15803d, #22c55e);
+}
 
 footer {
     text-align: center;
@@ -142,20 +178,35 @@ footer {
 
     <div class="search-box">
         <input
-          type="text"
-          id="search"
-          placeholder="🔍 Buscar por nombre, puesto, área u oficina..."
-          onkeyup="filterCards()">
+            type="text"
+            id="search"
+            placeholder="🔍 Buscar por nombre, puesto, área u oficina..."
+            onkeyup="filterCards()">
     </div>
 
-    <!-- 🔥 AQUÍ SE CARGAN LAS PERSONAS DESDE data.json -->
+    <!-- AQUÍ SE RENDERIZAN LAS TARJETAS DESDE data.json -->
     <div class="cards" id="cards"></div>
 
 </div>
 
 <footer>
-Directorio interno • Administrado por Sistemas
+    Directorio interno • Administrado por Sistemas
 </footer>
+
+<script>
+function filterCards() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.getElementsByClassName("card");
+    for (let i = 0; i < cards.length; i++) {
+        let text = cards[i].innerText.toLowerCase();
+        cards[i].style.display = text.includes(input) ? "" : "none";
+    }
+}
+
+function copyText(text) {
+    navigator.clipboard.writeText(text);
+}
+</script>
 
 <script src="app.js"></script>
 
