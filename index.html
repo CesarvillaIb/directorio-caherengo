@@ -2,159 +2,132 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Directorio General | Cahrengo</title>
+<title>Directorio General | Caherengo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- ICONOS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- FIREBASE COMPAT -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <style>
 body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:linear-gradient(180deg,#0f172a,#020617);
-color:#fff;
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0f172a;
+  color:#fff;
 }
 header{
-background:linear-gradient(90deg,#2563eb,#1e40af);
-padding:30px;
-text-align:center;
+  background:linear-gradient(90deg,#2563eb,#1e40af);
+  padding:25px;
+  text-align:center;
 }
 .search-box{
-display:flex;
-justify-content:center;
-gap:10px;
-margin:25px;
+  text-align:center;
+  margin:20px;
 }
 .search-box input{
-width:280px;
-padding:12px;
-border-radius:25px;
-border:none;
-}
-.search-box button{
-padding:12px 18px;
-border:none;
-border-radius:25px;
-background:#2563eb;
-color:#fff;
-cursor:pointer;
+  width:90%;
+  max-width:420px;
+  padding:12px;
+  border-radius:25px;
+  border:none;
 }
 .container{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-padding:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:20px;
 }
 .card{
-background:#020617;
-border-radius:18px;
-padding:18px;
-width:320px;
-box-shadow:0 10px 25px rgba(0,0,0,.5);
-position:relative;
+  background:#020617;
+  width:320px;
+  border-radius:16px;
+  padding:18px;
+  position:relative;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
 }
-.card h3{margin:0 0 8px}
-.card p{font-size:13px;margin:3px 0}
-
-.top-actions{
-position:absolute;
-top:10px;
-right:10px;
-display:flex;
-gap:6px;
-}
-.top-actions button{
-border:none;
-background:transparent;
-color:#94a3b8;
-cursor:pointer;
-font-size:15px;
-}
-.top-actions button:hover{color:#fff}
+.card h3{margin:0 0 10px;font-size:18px}
+.card p{font-size:13px;margin:4px 0}
 
 .copy{
-background:#020617;
-border-radius:10px;
-padding:8px;
-margin-top:6px;
-cursor:pointer;
-position:relative;
-font-size:13px;
+  background:#020617;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  margin-top:6px;
+  position:relative;
 }
 .copy::after{
-content:"Copiar";
-position:absolute;
-top:-25px;
-right:10px;
-background:#2563eb;
-font-size:11px;
-padding:4px 8px;
-border-radius:8px;
-opacity:0;
-transition:.2s;
+  content:"Copiar";
+  position:absolute;
+  top:-26px;
+  right:10px;
+  background:#2563eb;
+  font-size:11px;
+  padding:4px 8px;
+  border-radius:8px;
+  opacity:0;
+  transition:.2s;
 }
 .copy:hover::after{opacity:1}
 .copy.copied::after{
-content:"Copiado";
-background:#16a34a;
-opacity:1;
+  content:"Copiado";
+  background:#16a34a;
+  opacity:1;
 }
 
 .actions{
-display:flex;
-gap:8px;
-margin-top:12px;
+  display:flex;
+  gap:10px;
+  margin-top:12px;
 }
 .actions a{
-flex:1;
-padding:10px;
-border-radius:12px;
-text-align:center;
-color:#fff;
-font-size:16px;
+  flex:1;
+  text-align:center;
+  padding:10px;
+  border-radius:12px;
+  color:#fff;
+  font-size:16px;
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
-.wa{background:#22c55e}
+.chat{background:#22c55e}
 
-.modal{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.7);
-align-items:center;
-justify-content:center;
+.admin{
+  position:absolute;
+  top:10px;
+  right:10px;
+  display:flex;
+  gap:8px;
 }
-.modal-content{
-background:#020617;
-padding:20px;
-border-radius:15px;
-width:300px;
+.admin i{
+  cursor:pointer;
+  font-size:14px;
+  opacity:.7;
 }
-.modal-content input{
-width:100%;
-padding:10px;
-margin:6px 0;
-border-radius:8px;
-border:none;
-}
-.modal-content button{
-width:100%;
-margin-top:8px;
-padding:10px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-}
-.save{background:#16a34a;color:#fff}
-.close{background:#374151;color:#fff}
+.admin i:hover{opacity:1}
 
+#addBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:52px;
+  height:52px;
+  font-size:26px;
+  cursor:pointer;
+}
 footer{
-text-align:center;
-opacity:.6;
-font-size:12px;
-padding:25px;
+  text-align:center;
+  padding:25px;
+  font-size:12px;
+  opacity:.6;
 }
 </style>
 </head>
@@ -162,138 +135,145 @@ padding:25px;
 <body>
 
 <header>
-<h1>📘 Directorio General</h1>
-<p>Cahrengo | Uso interno</p>
+  <h1>📘 Directorio General</h1>
+  <p>Caherengo | Uso interno</p>
 </header>
 
 <div class="search-box">
-<input id="search" placeholder="Buscar..." onkeyup="filterCards()">
-<button onclick="openModal()">➕ Agregar persona</button>
+  <input id="search" placeholder="Buscar por nombre, puesto o área…" onkeyup="filterCards()">
 </div>
 
 <div class="container" id="cards"></div>
 
-<footer>Directorio interno · Sistemas</footer>
+<button id="addBtn" onclick="addPerson()">+</button>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<input id="nombre" placeholder="Nombre completo">
-<input id="puesto" placeholder="Puesto">
-<input id="area" placeholder="Área">
-<input id="oficina" placeholder="Oficina">
-<input id="correo" placeholder="Correo">
-<input id="telefono" placeholder="Teléfono">
-<button class="save" onclick="savePerson()">Guardar</button>
-<button class="close" onclick="closeModal()">Cancelar</button>
-</div>
-</div>
+<footer>
+  Directorio interno · Administrado por Sistemas
+</footer>
 
 <script>
-const CLAVE="KR@+0s117";
-let editIndex=null;
-
-let people=JSON.parse(localStorage.getItem("directorio"))||[
-{nombre:"Joel Omar Cuellar Blanco",puesto:"Secretario de Relaciones y Conflictos",area:"Administrativo",oficina:"Dirección",correo:"joel.cuellar@cahrengo.mx",telefono:"3321836481"}
-];
-
-function saveLocal(){
-localStorage.setItem("directorio",JSON.stringify(people));
-}
-
-function renderCards(data){
-cards.innerHTML="";
-data.forEach((p,i)=>{
-cards.innerHTML+=`
-<div class="card">
-<div class="top-actions">
-<button onclick="editPerson(${i})"><i class="bi bi-pencil"></i></button>
-<button onclick="deletePerson(${i})"><i class="bi bi-trash"></i></button>
-</div>
-
-<h3>${p.nombre}</h3>
-<p><strong>Puesto:</strong> ${p.puesto}</p>
-<p><strong>Área:</strong> ${p.area}</p>
-<p><strong>Oficina:</strong> ${p.oficina}</p>
-
-<div class="copy" onclick="copyText('${p.correo}',this)">${p.correo}</div>
-<div class="copy" onclick="copyText('${p.telefono}',this)">${p.telefono}</div>
-
-<div class="actions">
-<a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
-<a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
-<a class="wa" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-</div>
-</div>`;
-});
-}
-
-function copyText(t,e){
-navigator.clipboard.writeText(t);
-e.classList.add("copied");
-setTimeout(()=>e.classList.remove("copied"),1500);
-}
-
-function openModal(){
-const pass=prompt("Clave de seguridad:");
-if(pass!==CLAVE)return alert("Clave incorrecta");
-editIndex=null;
-modal.style.display="flex";
-document.querySelectorAll(".modal-content input").forEach(i=>i.value="");
-}
-
-function closeModal(){modal.style.display="none";}
-
-function savePerson(){
-const obj={
-nombre:nombre.value,
-puesto:puesto.value,
-area:area.value,
-oficina:oficina.value,
-correo:correo.value,
-telefono:telefono.value
+/* 🔥 FIREBASE CONFIG (TU PROYECTO) */
+const firebaseConfig = {
+  apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+  authDomain: "directorio-caherengo.firebaseapp.com",
+  projectId: "directorio-caherengo",
+  storageBucket: "directorio-caherengo.firebasestorage.app",
+  messagingSenderId: "190032909215",
+  appId: "1:190032909215:web:905d9cc19978cf50de23aa"
 };
-if(editIndex!==null) people[editIndex]=obj;
-else people.push(obj);
-saveLocal();renderCards(people);closeModal();
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let personas = [];
+
+/* 🔄 CARGAR DATOS */
+db.collection("personas").orderBy("createdAt","desc")
+.onSnapshot(snap=>{
+  personas=[];
+  snap.forEach(doc=>personas.push({id:doc.id,...doc.data()}));
+  render(personas);
+});
+
+/* 🎨 RENDER */
+function render(data){
+  const c=document.getElementById("cards");
+  c.innerHTML="";
+  data.forEach(p=>{
+    c.innerHTML+=`
+    <div class="card">
+      <div class="admin">
+        <i class="bi bi-pencil" title="Editar" onclick="editPerson('${p.id}')"></i>
+        <i class="bi bi-trash" title="Eliminar" onclick="deletePerson('${p.id}')"></i>
+      </div>
+      <h3>${p.nombre}</h3>
+      <p><b>Puesto:</b> ${p.puesto}</p>
+      <p><b>Área:</b> ${p.area}</p>
+      <p><b>Oficina:</b> ${p.oficina}</p>
+
+      <div class="copy" onclick="copyText('${p.correo}',this)">
+        ${p.correo}
+      </div>
+
+      <div class="copy" onclick="copyText('${p.telefono}',this)">
+        ${p.telefono}
+      </div>
+
+      <div class="actions">
+        <a class="mail" href="mailto:${p.correo}">
+          <i class="bi bi-envelope-fill"></i>
+        </a>
+        <a class="phone" href="tel:${p.telefono}">
+          <i class="bi bi-telephone-fill"></i>
+        </a>
+        <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+      </div>
+    </div>`;
+  });
 }
 
-function editPerson(i){
-const pass=prompt("Clave de seguridad:");
-if(pass!==CLAVE)return alert("Clave incorrecta");
-editIndex=i;
-const p=people[i];
-nombre.value=p.nombre;
-puesto.value=p.puesto;
-area.value=p.area;
-oficina.value=p.oficina;
-correo.value=p.correo;
-telefono.value=p.telefono;
-modal.style.display="flex";
-}
-
-function deletePerson(i){
-const pass=prompt("Clave de seguridad:");
-if(pass!==CLAVE)return alert("Clave incorrecta");
-if(confirm("¿Eliminar registro?")){
-people.splice(i,1);
-saveLocal();renderCards(people);
-}
-}
-
+/* 🔍 BUSCAR */
 function filterCards(){
-const v=search.value.toLowerCase();
-renderCards(people.filter(p=>
-p.nombre.toLowerCase().includes(v)||
-p.puesto.toLowerCase().includes(v)||
-p.area.toLowerCase().includes(v)||
-p.oficina.toLowerCase().includes(v)
-));
+  const v=document.getElementById("search").value.toLowerCase();
+  render(personas.filter(p=>
+    p.nombre.toLowerCase().includes(v) ||
+    p.puesto.toLowerCase().includes(v) ||
+    p.area.toLowerCase().includes(v)
+  ));
 }
 
-renderCards(people);
+/* 📋 COPIAR */
+function copyText(t,e){
+  navigator.clipboard.writeText(t);
+  e.classList.add("copied");
+  setTimeout(()=>e.classList.remove("copied"),1200);
+}
+
+/* 🔐 CLAVE */
+function auth(){
+  return prompt("Clave de administrador:")==="KR@+0s117";
+}
+
+/* ➕ AGREGAR */
+function addPerson(){
+  if(!auth())return;
+  const nombre=prompt("Nombre completo");
+  if(!nombre)return;
+  db.collection("personas").add({
+    nombre,
+    puesto:prompt("Puesto"),
+    area:prompt("Área"),
+    oficina:prompt("Oficina"),
+    correo:prompt("Correo"),
+    telefono:prompt("Teléfono"),
+    createdAt:firebase.firestore.FieldValue.serverTimestamp()
+  });
+}
+
+/* ✏️ EDITAR */
+function editPerson(id){
+  if(!auth())return;
+  const p=personas.find(x=>x.id===id);
+  db.collection("personas").doc(id).update({
+    nombre:prompt("Nombre",p.nombre),
+    puesto:prompt("Puesto",p.puesto),
+    area:prompt("Área",p.area),
+    oficina:prompt("Oficina",p.oficina),
+    correo:prompt("Correo",p.correo),
+    telefono:prompt("Teléfono",p.telefono)
+  });
+}
+
+/* 🗑️ ELIMINAR */
+function deletePerson(id){
+  if(!auth())return;
+  if(confirm("¿Eliminar este registro?")){
+    db.collection("personas").doc(id).delete();
+  }
+}
 </script>
 
 </body>
 </html>
-
