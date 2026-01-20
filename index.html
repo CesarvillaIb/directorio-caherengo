@@ -51,9 +51,27 @@ border-radius:18px;
 padding:18px;
 width:320px;
 box-shadow:0 10px 25px rgba(0,0,0,.5);
+position:relative;
 }
 .card h3{margin:0 0 8px}
 .card p{font-size:13px;margin:3px 0}
+
+.top-actions{
+position:absolute;
+top:10px;
+right:10px;
+display:flex;
+gap:6px;
+}
+.top-actions button{
+border:none;
+background:transparent;
+color:#94a3b8;
+cursor:pointer;
+font-size:15px;
+}
+.top-actions button:hover{color:#fff}
+
 .copy{
 background:#020617;
 border-radius:10px;
@@ -61,6 +79,7 @@ padding:8px;
 margin-top:6px;
 cursor:pointer;
 position:relative;
+font-size:13px;
 }
 .copy::after{
 content:"Copiar";
@@ -80,25 +99,24 @@ content:"Copiado";
 background:#16a34a;
 opacity:1;
 }
+
 .actions{
 display:flex;
 gap:8px;
 margin-top:12px;
 }
-.actions a,.actions button{
+.actions a{
 flex:1;
-border:none;
 padding:10px;
 border-radius:12px;
-cursor:pointer;
-font-size:15px;
+text-align:center;
 color:#fff;
+font-size:16px;
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
 .wa{background:#22c55e}
-.edit{background:#f59e0b}
-.delete{background:#dc2626}
+
 .modal{
 display:none;
 position:fixed;
@@ -131,6 +149,7 @@ cursor:pointer;
 }
 .save{background:#16a34a;color:#fff}
 .close{background:#374151;color:#fff}
+
 footer{
 text-align:center;
 opacity:.6;
@@ -178,13 +197,20 @@ let people=JSON.parse(localStorage.getItem("directorio"))||[
 {nombre:"Joel Omar Cuellar Blanco",puesto:"Secretario de Relaciones y Conflictos",area:"Administrativo",oficina:"Dirección",correo:"joel.cuellar@cahrengo.mx",telefono:"3321836481"}
 ];
 
-function saveLocal(){localStorage.setItem("directorio",JSON.stringify(people));}
+function saveLocal(){
+localStorage.setItem("directorio",JSON.stringify(people));
+}
 
 function renderCards(data){
 cards.innerHTML="";
 data.forEach((p,i)=>{
 cards.innerHTML+=`
 <div class="card">
+<div class="top-actions">
+<button onclick="editPerson(${i})"><i class="bi bi-pencil"></i></button>
+<button onclick="deletePerson(${i})"><i class="bi bi-trash"></i></button>
+</div>
+
 <h3>${p.nombre}</h3>
 <p><strong>Puesto:</strong> ${p.puesto}</p>
 <p><strong>Área:</strong> ${p.area}</p>
@@ -197,8 +223,6 @@ cards.innerHTML+=`
 <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
 <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
 <a class="wa" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-<button class="edit" onclick="editPerson(${i})"><i class="bi bi-pencil"></i></button>
-<button class="delete" onclick="deletePerson(${i})"><i class="bi bi-trash"></i></button>
 </div>
 </div>`;
 });
@@ -211,10 +235,13 @@ setTimeout(()=>e.classList.remove("copied"),1500);
 }
 
 function openModal(){
+const pass=prompt("Clave de seguridad:");
+if(pass!==CLAVE)return alert("Clave incorrecta");
 editIndex=null;
 modal.style.display="flex";
 document.querySelectorAll(".modal-content input").forEach(i=>i.value="");
 }
+
 function closeModal(){modal.style.display="none";}
 
 function savePerson(){
@@ -269,3 +296,4 @@ renderCards(people);
 
 </body>
 </html>
+
