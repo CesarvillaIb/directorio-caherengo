@@ -1,12 +1,48 @@
-[
-  {
-    "nombre": "Joel Omar Cuellar Blanco",
-    "puesto": "Secretario de Relaciones y Conflictos",
-    "area": "Administrativo",
-    "oficina": "Zapopan",
-    "correo": "joel.cuellar@caherengo.mx",
-    "telefono": "3321836481",
-    "badge": "Administrativo"
-  }
-]
-
+{
+  "nombre": "Joel Omar Cuellar Blanco",
+  "puesto": "Secretario de Relaciones y Conflictos",
+  "area": "Dirección",
+  "oficina": "Zapopan",
+  "correo": "joel.cuellar@caherengo.mx",
+  "telefono": "3321836481"
+},
+{
+  "nombre": "Julio Cesar Lara Aldaz",
+  "puesto": "Centro de Control",
+  "area": "Administrativo",
+  "oficina": "Zapopan",
+  "correo": "centrodecontrol@caherengo.mx",
+  "telefono": "3318658783"
+},
+{
+  "nombre": "Carlos Andrés Cruz Ayala",
+  "puesto": "Almacén",
+  "area": "Administrativo",
+  "oficina": "Zapopan",
+  "correo": "almacencaherengo1@gmail.com",
+  "telefono": "3318658784"
+},
+{
+  "nombre": "Jesús Hernández Aguilar",
+  "puesto": "Reclutamiento",
+  "area": "Administrativo",
+  "oficina": "Zapopan",
+  "correo": "administracion.recursoshumanos@caherengo.mx",
+  "telefono": "3334585539"
+},
+{
+  "nombre": "Bryan Oswaldo Ortiz Espinoza",
+  "puesto": "Jurídico",
+  "area": "Administrativo",
+  "oficina": "Zapopan",
+  "correo": "juridico@caherengo.mx",
+  "telefono": "3318658789"
+},
+{
+  "nombre": "Brenda Marlene González Valencia",
+  "puesto": "Administración Operativa",
+  "area": "Administrativo",
+  "oficina": "Zapopan",
+  "correo": "administracionoperativa@caherengo.mx",
+  "telefono": "3318658792"
+}
