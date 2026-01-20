@@ -2,132 +2,135 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Directorio General | Caherengo</title>
+<title>Directorio General | Cahrengo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ICONOS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-<!-- FIREBASE COMPAT -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
 <style>
 body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#0f172a;
-  color:#fff;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#0f172a,#020617);
+    color:#fff;
 }
 header{
-  background:linear-gradient(90deg,#2563eb,#1e40af);
-  padding:25px;
-  text-align:center;
+    background:linear-gradient(90deg,#2563eb,#1e40af);
+    padding:25px;
+    text-align:center;
 }
 .search-box{
-  text-align:center;
-  margin:20px;
+    display:flex;
+    justify-content:center;
+    margin:20px;
 }
 .search-box input{
-  width:90%;
-  max-width:420px;
-  padding:12px;
-  border-radius:25px;
-  border:none;
+    width:90%;
+    max-width:420px;
+    padding:12px 18px;
+    border-radius:25px;
+    border:none;
 }
 .container{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  padding:20px;
+    padding:20px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
 }
 .card{
-  background:#020617;
-  width:320px;
-  border-radius:16px;
-  padding:18px;
-  position:relative;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
+    background:#020617;
+    border-radius:16px;
+    padding:20px;
+    width:320px;
+    position:relative;
 }
-.card h3{margin:0 0 10px;font-size:18px}
-.card p{font-size:13px;margin:4px 0}
-
+.card h3{margin:0 0 10px}
 .copy{
-  background:#020617;
-  padding:8px 12px;
-  border-radius:10px;
-  cursor:pointer;
-  margin-top:6px;
-  position:relative;
+    background:#0f172a;
+    padding:8px 12px;
+    border-radius:10px;
+    font-size:13px;
+    margin-top:5px;
+    cursor:pointer;
 }
-.copy::after{
-  content:"Copiar";
-  position:absolute;
-  top:-26px;
-  right:10px;
-  background:#2563eb;
-  font-size:11px;
-  padding:4px 8px;
-  border-radius:8px;
-  opacity:0;
-  transition:.2s;
-}
-.copy:hover::after{opacity:1}
-.copy.copied::after{
-  content:"Copiado";
-  background:#16a34a;
-  opacity:1;
-}
-
 .actions{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
+    display:flex;
+    gap:10px;
+    margin-top:12px;
 }
 .actions a{
-  flex:1;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
-  color:#fff;
-  font-size:16px;
+    flex:1;
+    text-align:center;
+    padding:10px;
+    border-radius:12px;
+    color:#fff;
+    text-decoration:none;
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
 .chat{background:#22c55e}
 
-.admin{
-  position:absolute;
-  top:10px;
-  right:10px;
-  display:flex;
-  gap:8px;
+/* BOTONES EDITAR / ELIMINAR */
+.admin-actions{
+    position:absolute;
+    top:10px;
+    right:10px;
+    display:flex;
+    gap:8px;
 }
-.admin i{
-  cursor:pointer;
-  font-size:14px;
-  opacity:.7;
+.admin-actions i{
+    cursor:pointer;
+    font-size:14px;
+    opacity:.8;
 }
-.admin i:hover{opacity:1}
+.admin-actions i:hover{opacity:1}
 
-#addBtn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#2563eb;
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:52px;
-  height:52px;
-  font-size:26px;
-  cursor:pointer;
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
 }
-footer{
-  text-align:center;
-  padding:25px;
-  font-size:12px;
-  opacity:.6;
+.modal-content{
+    background:#020617;
+    padding:20px;
+    border-radius:16px;
+    width:90%;
+    max-width:380px;
+}
+.modal-content input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border:none;
+}
+.modal-content button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    cursor:pointer;
+}
+.add-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#2563eb;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -135,143 +138,138 @@ footer{
 <body>
 
 <header>
-  <h1>📘 Directorio General</h1>
-  <p>Caherengo | Uso interno</p>
+<h1>📘 Directorio General</h1>
+<p>Cahrengo | Uso interno</p>
 </header>
 
 <div class="search-box">
-  <input id="search" placeholder="Buscar por nombre, puesto o área…" onkeyup="filterCards()">
+<input type="text" placeholder="Buscar..." onkeyup="filterCards(this.value)">
 </div>
 
 <div class="container" id="cards"></div>
 
-<button id="addBtn" onclick="addPerson()">+</button>
+<div class="add-btn" onclick="openModal()">+</div>
 
-<footer>
-  Directorio interno · Administrado por Sistemas
-</footer>
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3 id="modalTitle">Agregar persona</h3>
+<input id="nombre" placeholder="Nombre">
+<input id="puesto" placeholder="Puesto">
+<input id="area" placeholder="Área">
+<input id="oficina" placeholder="Oficina">
+<input id="correo" placeholder="Correo">
+<input id="telefono" placeholder="Teléfono">
+<button onclick="savePerson()">Guardar</button>
+</div>
+</div>
 
-<script>
-/* 🔥 FIREBASE CONFIG (TU PROYECTO) */
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
-  authDomain: "directorio-caherengo.firebaseapp.com",
-  projectId: "directorio-caherengo",
-  storageBucket: "directorio-caherengo.firebasestorage.app",
-  messagingSenderId: "190032909215",
-  appId: "1:190032909215:web:905d9cc19978cf50de23aa"
+ apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+ authDomain: "directorio-caherengo.firebaseapp.com",
+ projectId: "directorio-caherengo",
+ storageBucket: "directorio-caherengo.firebasestorage.app",
+ messagingSenderId: "190032909215",
+ appId: "1:190032909215:web:905d9cc19978cf50de23aa"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const PASSWORD = "KR@+0s117";
 
-let personas = [];
+let people = [];
+let editId = null;
 
-/* 🔄 CARGAR DATOS */
-db.collection("personas").orderBy("createdAt","desc")
-.onSnapshot(snap=>{
-  personas=[];
-  snap.forEach(doc=>personas.push({id:doc.id,...doc.data()}));
-  render(personas);
-});
+/* CARGAR */
+async function loadPeople(){
+ people=[];
+ const snap = await getDocs(collection(db,"personas"));
+ snap.forEach(d=>people.push({id:d.id,...d.data()}));
+ renderCards(people);
+}
+loadPeople();
 
-/* 🎨 RENDER */
-function render(data){
-  const c=document.getElementById("cards");
-  c.innerHTML="";
-  data.forEach(p=>{
-    c.innerHTML+=`
-    <div class="card">
-      <div class="admin">
-        <i class="bi bi-pencil" title="Editar" onclick="editPerson('${p.id}')"></i>
-        <i class="bi bi-trash" title="Eliminar" onclick="deletePerson('${p.id}')"></i>
-      </div>
-      <h3>${p.nombre}</h3>
-      <p><b>Puesto:</b> ${p.puesto}</p>
-      <p><b>Área:</b> ${p.area}</p>
-      <p><b>Oficina:</b> ${p.oficina}</p>
-
-      <div class="copy" onclick="copyText('${p.correo}',this)">
-        ${p.correo}
-      </div>
-
-      <div class="copy" onclick="copyText('${p.telefono}',this)">
-        ${p.telefono}
-      </div>
-
-      <div class="actions">
-        <a class="mail" href="mailto:${p.correo}">
-          <i class="bi bi-envelope-fill"></i>
-        </a>
-        <a class="phone" href="tel:${p.telefono}">
-          <i class="bi bi-telephone-fill"></i>
-        </a>
-        <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank">
-          <i class="bi bi-whatsapp"></i>
-        </a>
-      </div>
-    </div>`;
-  });
+/* RENDER */
+function renderCards(data){
+ const c=document.getElementById("cards");
+ c.innerHTML="";
+ data.forEach(p=>{
+  c.innerHTML+=`
+  <div class="card">
+    <div class="admin-actions">
+      <i class="bi bi-pencil" onclick="editPerson('${p.id}')"></i>
+      <i class="bi bi-trash" onclick="deletePerson('${p.id}')"></i>
+    </div>
+    <h3>${p.nombre}</h3>
+    <p>${p.puesto}</p>
+    <div class="copy">${p.correo}</div>
+    <div class="copy">${p.telefono}</div>
+    <div class="actions">
+      <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+      <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+      <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+    </div>
+  </div>`;
+ });
 }
 
-/* 🔍 BUSCAR */
-function filterCards(){
-  const v=document.getElementById("search").value.toLowerCase();
-  render(personas.filter(p=>
-    p.nombre.toLowerCase().includes(v) ||
-    p.puesto.toLowerCase().includes(v) ||
-    p.area.toLowerCase().includes(v)
-  ));
+/* MODAL */
+window.openModal=()=>{
+ editId=null;
+ document.getElementById("modal").style.display="flex";
+}
+window.savePerson=async()=>{
+ const pass=prompt("Clave de seguridad:");
+ if(pass!==PASSWORD)return alert("Clave incorrecta");
+
+ const data={
+  nombre:nombre.value,
+  puesto:puesto.value,
+  area:area.value,
+  oficina:oficina.value,
+  correo:correo.value,
+  telefono:telefono.value
+ };
+
+ if(editId){
+  await updateDoc(doc(db,"personas",editId),data);
+ }else{
+  await addDoc(collection(db,"personas"),data);
+ }
+ document.getElementById("modal").style.display="none";
+ loadPeople();
 }
 
-/* 📋 COPIAR */
-function copyText(t,e){
-  navigator.clipboard.writeText(t);
-  e.classList.add("copied");
-  setTimeout(()=>e.classList.remove("copied"),1200);
+/* EDITAR */
+window.editPerson=(id)=>{
+ const p=people.find(x=>x.id===id);
+ editId=id;
+ Object.assign(nombre,{value:p.nombre});
+ Object.assign(puesto,{value:p.puesto});
+ Object.assign(area,{value:p.area});
+ Object.assign(oficina,{value:p.oficina});
+ Object.assign(correo,{value:p.correo});
+ Object.assign(telefono,{value:p.telefono});
+ document.getElementById("modal").style.display="flex";
 }
 
-/* 🔐 CLAVE */
-function auth(){
-  return prompt("Clave de administrador:")==="KR@+0s117";
+/* ELIMINAR */
+window.deletePerson=async(id)=>{
+ const pass=prompt("Clave de seguridad:");
+ if(pass!==PASSWORD)return alert("Clave incorrecta");
+ await deleteDoc(doc(db,"personas",id));
+ loadPeople();
 }
 
-/* ➕ AGREGAR */
-function addPerson(){
-  if(!auth())return;
-  const nombre=prompt("Nombre completo");
-  if(!nombre)return;
-  db.collection("personas").add({
-    nombre,
-    puesto:prompt("Puesto"),
-    area:prompt("Área"),
-    oficina:prompt("Oficina"),
-    correo:prompt("Correo"),
-    telefono:prompt("Teléfono"),
-    createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  });
-}
-
-/* ✏️ EDITAR */
-function editPerson(id){
-  if(!auth())return;
-  const p=personas.find(x=>x.id===id);
-  db.collection("personas").doc(id).update({
-    nombre:prompt("Nombre",p.nombre),
-    puesto:prompt("Puesto",p.puesto),
-    area:prompt("Área",p.area),
-    oficina:prompt("Oficina",p.oficina),
-    correo:prompt("Correo",p.correo),
-    telefono:prompt("Teléfono",p.telefono)
-  });
-}
-
-/* 🗑️ ELIMINAR */
-function deletePerson(id){
-  if(!auth())return;
-  if(confirm("¿Eliminar este registro?")){
-    db.collection("personas").doc(id).delete();
-  }
+/* FILTRO */
+window.filterCards=(v)=>{
+ v=v.toLowerCase();
+ renderCards(people.filter(p=>p.nombre.toLowerCase().includes(v)));
 }
 </script>
 
