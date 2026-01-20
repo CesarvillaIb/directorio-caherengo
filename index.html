@@ -8,171 +8,262 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
-body{
- margin:0;
- font-family:Arial,Helvetica,sans-serif;
- background:linear-gradient(180deg,#0f172a,#020617);
- color:#fff;
+:root{
+  --primary:#2563eb;
+  --bg:#020617;
+  --card:#0f172a;
+  --soft:#94a3b8;
 }
-header{
- background:linear-gradient(90deg,#2563eb,#1e40af);
- padding:25px;
- text-align:center;
-}
-.search-box{
- display:flex;
- justify-content:center;
- margin:20px;
-}
-.search-box input{
- width:90%;
- max-width:420px;
- padding:12px 18px;
- border-radius:25px;
- border:none;
-}
-.container{
- padding:20px;
- display:flex;
- flex-wrap:wrap;
- gap:20px;
-}
-.card{
- background:#020617;
- border-radius:16px;
- padding:20px;
- width:320px;
- position:relative;
- animation:fadeIn .4s ease;
-}
-@keyframes fadeIn{
- from{opacity:0;transform:translateY(10px)}
- to{opacity:1;transform:none}
-}
-.copy{
- background:#0f172a;
- padding:8px 12px;
- border-radius:10px;
- font-size:13px;
- margin-top:6px;
- cursor:pointer;
- position:relative;
-}
-.copy::after{
- content:"Copiar";
- position:absolute;
- top:-26px;
- right:8px;
- font-size:11px;
- background:#2563eb;
- padding:4px 8px;
- border-radius:8px;
- opacity:0;
- transition:.2s;
-}
-.copy:hover::after{opacity:1}
-.copy.copied::after{
- content:"Copiado";
- background:#16a34a;
- opacity:1;
-}
-.actions{
- display:flex;
- gap:10px;
- margin-top:12px;
-}
-.actions a{
- flex:1;
- text-align:center;
- padding:10px;
- border-radius:12px;
- color:#fff;
- text-decoration:none;
-}
-.mail{background:#2563eb}
-.phone{background:#10b981}
-.chat{background:#22c55e}
 
-/* ICONOS ADMIN */
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:var(--bg);
+  color:#fff;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding:20px;
+  background:linear-gradient(90deg,#2563eb,#1e40af);
+  text-align:center;
+}
+
+header h1{margin:0;font-size:22px}
+header p{margin-top:4px;font-size:13px;opacity:.85}
+
+/* ===== FILTROS ===== */
+.filters{
+  display:flex;
+  gap:8px;
+  padding:12px 16px;
+  overflow-x:auto;
+}
+
+.filters button{
+  background:#020617;
+  border:1px solid #334155;
+  color:#94a3b8;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:12px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.filters button.active{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+}
+
+.search-box{
+  padding:12px 16px;
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 18px;
+  border-radius:18px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+.container{
+  padding:16px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:16px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);
+  animation:fadeIn .3s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--primary);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+
 .admin-actions{
- position:absolute;
- top:10px;
- right:10px;
- display:flex;
- gap:8px;
+  display:flex;
+  gap:8px;
 }
+
 .admin-actions i{
- font-size:14px;
- cursor:pointer;
- opacity:.7;
+  cursor:pointer;
+  font-size:14px;
+  opacity:.6;
 }
+
 .admin-actions i:hover{opacity:1}
 
-/* BOTÓN AGREGAR */
-.add-btn{
- position:fixed;
- bottom:20px;
- right:20px;
- width:56px;
- height:56px;
- border-radius:50%;
- background:#2563eb;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:26px;
- cursor:pointer;
+.card h3{
+  margin:8px 0 4px;
+  font-size:16px;
 }
 
-/* MODALES */
+.badge{
+  display:inline-block;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(37,99,235,.18);
+  color:#bfdbfe;
+  margin-bottom:6px;
+}
+
+.card p{
+  margin:4px 0;
+  font-size:13px;
+  color:var(--soft);
+}
+
+.copy{
+  margin-top:6px;
+  background:#020617;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  position:relative;
+  font-size:13px;
+}
+
+.copy::after{
+  content:"Copiar";
+  position:absolute;
+  top:-28px;
+  right:10px;
+  background:var(--primary);
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:11px;
+  opacity:0;
+  transition:.2s;
+}
+
+.copy:hover::after{opacity:1}
+
+.copy.copied::after{
+  content:"Copiado ✓";
+  background:#020617;
+  opacity:1;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+.actions a{
+  flex:1;
+  text-align:center;
+  padding:10px;
+  border-radius:12px;
+  color:#fff;
+  text-decoration:none;
+  font-size:16px;
+}
+
+.mail{background:#2563eb}
+.phone{background:#0f766e}
+.chat{background:#15803d}
+
+/* ===== MODAL ===== */
 .modal{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.7);
- display:none;
- justify-content:center;
- align-items:center;
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.65);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
 }
-.modal-content{
- background:#020617;
- padding:20px;
- border-radius:16px;
- width:90%;
- max-width:380px;
- animation:scale .3s ease;
-}
-@keyframes scale{
- from{transform:scale(.9);opacity:0}
- to{transform:scale(1);opacity:1}
-}
-.modal-content input{
- width:100%;
- padding:10px;
- margin-bottom:10px;
- border-radius:10px;
- border:none;
-}
-.modal-content button{
- width:100%;
- padding:10px;
- border:none;
- border-radius:12px;
- margin-top:8px;
- cursor:pointer;
-}
-.save{background:#2563eb;color:#fff}
-.cancel{background:#334155;color:#fff}
 
-/* PASSWORD FEEDBACK */
-.success{animation:success .4s}
-.error{animation:error .4s}
-@keyframes success{
- 0%{background:#16a34a}
- 100%{background:#020617}
+.modal-content{
+  background:#020617;
+  padding:24px;
+  border-radius:18px;
+  width:90%;
+  max-width:360px;
 }
-@keyframes error{
- 0%{background:#dc2626}
- 100%{background:#020617}
+
+.modal-content h3{
+  margin-top:0;
+  font-size:18px;
+}
+
+.modal-content input{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#020617;
+  color:#fff;
+}
+
+.modal-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.modal-buttons button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.confirm{background:var(--primary);color:#fff}
+.cancel{background:#020617;color:#94a3b8;border:1px solid #334155}
+
+.input-error{
+  animation:shake .25s;
+}
+
+@keyframes shake{
+  0%,100%{transform:none}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+}
+
+footer{
+  text-align:center;
+  padding:24px;
+  font-size:12px;
+  opacity:.6;
 }
 </style>
 </head>
@@ -180,69 +271,78 @@ header{
 <body>
 
 <header>
-<h1>📘 Directorio General</h1>
-<p>Cahrengo | Uso interno</p>
+  <h1>📘 Directorio General</h1>
+  <p>Cahrengo | Uso interno</p>
 </header>
 
+<div class="filters">
+  <button class="active" onclick="setOffice('')">Todas</button>
+  <button onclick="setOffice('Zapopan')">Zapopan</button>
+  <button onclick="setOffice('Tlajomulco')">Tlajomulco</button>
+  <button onclick="setOffice('Mérida')">Mérida</button>
+  <button onclick="setOffice('Aguascalientes')">Aguascalientes</button>
+  <button onclick="setOffice('Guerrero Negro')">Guerrero Negro</button>
+</div>
+
 <div class="search-box">
-<input placeholder="Buscar..." onkeyup="filterCards(this.value)">
+  <input id="search" placeholder="Buscar por nombre, área, correo, teléfono u oficina…" onkeyup="applyFilters()">
 </div>
 
 <div class="container" id="cards"></div>
 
-<div class="add-btn" onclick="requestPassword('add')">+</div>
+<footer>Directorio interno · Administrado por Sistemas</footer>
 
-<!-- MODAL PERSONA -->
-<div class="modal" id="personModal">
-<div class="modal-content" id="personBox">
-<h3 id="modalTitle">Persona</h3>
-<input id="nombre" placeholder="Nombre">
-<input id="puesto" placeholder="Puesto">
-<input id="area" placeholder="Área">
-<input id="oficina" placeholder="Oficina">
-<input id="correo" placeholder="Correo">
-<input id="telefono" placeholder="Teléfono">
-<button class="save" onclick="savePerson()">Guardar</button>
-<button class="cancel" onclick="closeModal()">Cancelar</button>
-</div>
+<!-- MODAL CLAVE -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <h3>Acceso administrativo</h3>
+    <input type="password" id="passInput" placeholder="Ingrese la clave">
+    <div class="modal-buttons">
+      <button class="confirm" onclick="validatePass()">Continuar</button>
+      <button class="cancel" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<script>
+const ADMIN_PASS="KR@+0s117";
+let pendingAction=null;
+let officeFilter="";
 
-const firebaseConfig={
- apiKey:"AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
- authDomain:"directorio-caherengo.firebaseapp.com",
- projectId:"directorio-caherengo"
-};
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+const people=[
+ {
+  nombre:"Joel Omar Cuellar Blanco",
+  puesto:"Secretario de Relaciones y Conflictos",
+  area:"Dirección",
+  oficina:"Zapopan",
+  correo:"joel.cuellar@caherengo.mx",
+  telefono:"3321836481"
+ }
+];
 
-const PASSWORD="KR@+0s117";
-let people=[],editId=null,action=null;
-
-/* CARGA */
-async function load(){
- people=[];
- const snap=await getDocs(collection(db,"personas"));
- snap.forEach(d=>people.push({id:d.id,...d.data()}));
- render(people);
+function initials(name){
+ return name.split(" ").slice(0,2).map(n=>n[0]).join("");
 }
-load();
 
-/* RENDER */
-function render(data){
- cards.innerHTML="";
- data.forEach(p=>{
-  cards.innerHTML+=`
+function renderCards(data){
+ const c=document.getElementById("cards");
+ c.innerHTML="";
+ data.forEach((p,i)=>{
+  c.innerHTML+=`
   <div class="card">
-   <div class="admin-actions">
-    <i class="bi bi-pencil" onclick="requestPassword('edit','${p.id}')"></i>
-    <i class="bi bi-trash" onclick="requestPassword('delete','${p.id}')"></i>
+   <div class="card-header">
+    <div class="avatar">${initials(p.nombre)}</div>
+    <div class="admin-actions">
+     <i class="bi bi-pencil" onclick="askPass(()=>editPerson(${i}))"></i>
+     <i class="bi bi-trash" onclick="askPass(()=>deletePerson(${i}))"></i>
+    </div>
    </div>
+
    <h3>${p.nombre}</h3>
-   <p>${p.puesto}</p>
+   <div class="badge">${p.oficina}</div>
+
+   <p><strong>Puesto:</strong> ${p.puesto}</p>
+   <p><strong>Área:</strong> ${p.area}</p>
 
    <div class="copy" onclick="copyText('${p.correo}',this)">${p.correo}</div>
    <div class="copy" onclick="copyText('${p.telefono}',this)">${p.telefono}</div>
@@ -256,82 +356,62 @@ function render(data){
  });
 }
 
-/* COPIAR */
-window.copyText=(t,e)=>{
- navigator.clipboard.writeText(t);
- e.classList.add("copied");
- setTimeout(()=>e.classList.remove("copied"),1200);
+function copyText(text,el){
+ navigator.clipboard.writeText(text);
+ el.classList.add("copied");
+ setTimeout(()=>el.classList.remove("copied"),1200);
 }
 
-/* PASSWORD */
-window.requestPassword=(act,id=null)=>{
- const pass=prompt("Ingresa la clave:");
- if(pass!==PASSWORD){
-  document.body.classList.add("error");
-  setTimeout(()=>document.body.classList.remove("error"),400);
-  return;
- }
- document.body.classList.add("success");
- setTimeout(()=>document.body.classList.remove("success"),400);
-
- action=act;
- editId=id;
- if(act==="add"){openModal()}
- if(act==="edit"){fillForm(id);openModal()}
- if(act==="delete"){remove(id)}
+function setOffice(o){
+ officeFilter=o;
+ document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+ event.target.classList.add("active");
+ applyFilters();
 }
 
-/* MODAL */
-function openModal(){
- personModal.style.display="flex";
-}
-window.closeModal=()=>{
- personModal.style.display="none";
- editId=null;
+function applyFilters(){
+ const v=document.getElementById("search").value.toLowerCase();
+ renderCards(
+  people.filter(p=>{
+   const matchText=Object.values(p).join(" ").toLowerCase().includes(v);
+   const matchOffice=!officeFilter || p.oficina===officeFilter;
+   return matchText && matchOffice;
+  })
+ );
 }
 
-/* GUARDAR */
-window.savePerson=async()=>{
- const data={
-  nombre:nombre.value,
-  puesto:puesto.value,
-  area:area.value,
-  oficina:oficina.value,
-  correo:correo.value,
-  telefono:telefono.value
- };
- if(editId){
-  await updateDoc(doc(db,"personas",editId),data);
+/* ADMIN */
+function askPass(action){
+ pendingAction=action;
+ document.getElementById("authModal").style.display="flex";
+ document.getElementById("passInput").value="";
+}
+
+function validatePass(){
+ const i=document.getElementById("passInput");
+ if(i.value===ADMIN_PASS){
+  closeModal();
+  pendingAction();
  }else{
-  await addDoc(collection(db,"personas"),data);
+  i.classList.add("input-error");
+  setTimeout(()=>i.classList.remove("input-error"),300);
  }
- closeModal();
- load();
 }
 
-/* EDIT */
-function fillForm(id){
- const p=people.find(x=>x.id===id);
- nombre.value=p.nombre;
- puesto.value=p.puesto;
- area.value=p.area;
- oficina.value=p.oficina;
- correo.value=p.correo;
- telefono.value=p.telefono;
+function closeModal(){
+ document.getElementById("authModal").style.display="none";
 }
 
-/* DELETE */
-async function remove(id){
- if(!confirm("¿Eliminar este registro?"))return;
- await deleteDoc(doc(db,"personas",id));
- load();
+function editPerson(i){
+ alert("Formulario de edición (siguiente paso)");
 }
 
-/* FILTRO */
-window.filterCards=v=>{
- v=v.toLowerCase();
- render(people.filter(p=>p.nombre.toLowerCase().includes(v)));
+function deletePerson(i){
+ people.splice(i,1);
+ applyFilters();
 }
+
+renderCards(people);
 </script>
 
 </body>
