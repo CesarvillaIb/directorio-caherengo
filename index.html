@@ -1,234 +1,267 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Directorio General | Cahrengo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Directorio General | Cahrengo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ICONOS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(180deg, #0f172a, #020617);
-            color: #fff;
-        }
-
-        header {
-            background: linear-gradient(90deg, #2563eb, #1e40af);
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .search-box {
-            display: flex;
-            justify-content: center;
-            margin: 25px 0;
-        }
-
-        .search-box input {
-            width: 90%;
-            max-width: 420px;
-            padding: 12px 18px;
-            border-radius: 25px;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .container {
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 16px;
-            padding: 20px;
-            width: 320px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .card h2 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .card p {
-            margin: 4px 0;
-            font-size: 13px;
-            opacity: 0.9;
-        }
-
-        .copy {
-            margin-top: 6px;
-            background: #020617;
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 13px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .copy::after {
-            content: "Copiar";
-            position: absolute;
-            top: -28px;
-            right: 10px;
-            background: #2563eb;
-            color: #fff;
-            font-size: 11px;
-            padding: 4px 8px;
-            border-radius: 8px;
-            opacity: 0;
-        }
-
-        .copy:hover::after { opacity: 1; }
-
-        .copy.copied::after {
-            content: "Copiado";
-            background: #16a34a;
-            opacity: 1;
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 14px;
-        }
-
-        .actions a {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 18px;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .mail { background: #2563eb; }
-        .phone { background: #10b981; }
-        .chat { background: #22c55e; }
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            font-size: 12px;
-            opacity: 0.6;
-        }
-    </style>
+<style>
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(180deg,#0f172a,#020617);
+color:#fff;
+}
+header{
+background:linear-gradient(90deg,#2563eb,#1e40af);
+padding:30px;
+text-align:center;
+}
+.search-box{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:25px;
+}
+.search-box input{
+width:280px;
+padding:12px;
+border-radius:25px;
+border:none;
+}
+.search-box button{
+padding:12px 18px;
+border:none;
+border-radius:25px;
+background:#2563eb;
+color:#fff;
+cursor:pointer;
+}
+.container{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+padding:20px;
+}
+.card{
+background:#020617;
+border-radius:18px;
+padding:18px;
+width:320px;
+box-shadow:0 10px 25px rgba(0,0,0,.5);
+}
+.card h3{margin:0 0 8px}
+.card p{font-size:13px;margin:3px 0}
+.copy{
+background:#020617;
+border-radius:10px;
+padding:8px;
+margin-top:6px;
+cursor:pointer;
+position:relative;
+}
+.copy::after{
+content:"Copiar";
+position:absolute;
+top:-25px;
+right:10px;
+background:#2563eb;
+font-size:11px;
+padding:4px 8px;
+border-radius:8px;
+opacity:0;
+transition:.2s;
+}
+.copy:hover::after{opacity:1}
+.copy.copied::after{
+content:"Copiado";
+background:#16a34a;
+opacity:1;
+}
+.actions{
+display:flex;
+gap:8px;
+margin-top:12px;
+}
+.actions a,.actions button{
+flex:1;
+border:none;
+padding:10px;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+color:#fff;
+}
+.mail{background:#2563eb}
+.phone{background:#10b981}
+.wa{background:#22c55e}
+.edit{background:#f59e0b}
+.delete{background:#dc2626}
+.modal{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.7);
+align-items:center;
+justify-content:center;
+}
+.modal-content{
+background:#020617;
+padding:20px;
+border-radius:15px;
+width:300px;
+}
+.modal-content input{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:8px;
+border:none;
+}
+.modal-content button{
+width:100%;
+margin-top:8px;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+.save{background:#16a34a;color:#fff}
+.close{background:#374151;color:#fff}
+footer{
+text-align:center;
+opacity:.6;
+font-size:12px;
+padding:25px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>📘 Directorio General</h1>
-    <p>Cahrengo | Uso interno</p>
+<h1>📘 Directorio General</h1>
+<p>Cahrengo | Uso interno</p>
 </header>
 
 <div class="search-box">
-    <input type="text" id="search" placeholder="Buscar..." onkeyup="filterCards()">
-</div>
-
-<div style="text-align:center; margin-bottom:20px;">
-    <button onclick="openModal()" style="background:#2563eb;color:#fff;border:none;padding:10px 20px;border-radius:20px;cursor:pointer;">
-        ➕ Agregar persona
-    </button>
+<input id="search" placeholder="Buscar..." onkeyup="filterCards()">
+<button onclick="openModal()">➕ Agregar persona</button>
 </div>
 
 <div class="container" id="cards"></div>
 
-<footer>
-    Directorio interno · Sistemas
-</footer>
+<footer>Directorio interno · Sistemas</footer>
 
 <!-- MODAL -->
-<div id="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);justify-content:center;align-items:center;">
-    <div style="background:#020617;padding:25px;border-radius:16px;width:90%;max-width:400px;">
-        <h3>Agregar persona</h3>
-        <input id="mNombre" placeholder="Nombre" style="width:100%;margin:6px 0;padding:8px">
-        <input id="mPuesto" placeholder="Puesto" style="width:100%;margin:6px 0;padding:8px">
-        <input id="mArea" placeholder="Área" style="width:100%;margin:6px 0;padding:8px">
-        <input id="mOficina" placeholder="Oficina" style="width:100%;margin:6px 0;padding:8px">
-        <input id="mCorreo" placeholder="Correo" style="width:100%;margin:6px 0;padding:8px">
-        <input id="mTelefono" placeholder="Teléfono" style="width:100%;margin:6px 0;padding:8px">
-        <div style="display:flex;gap:10px;margin-top:15px">
-            <button onclick="savePerson()" style="flex:1;background:#16a34a;color:#fff;border:none;padding:10px;border-radius:10px">Guardar</button>
-            <button onclick="closeModal()" style="flex:1;background:#dc2626;color:#fff;border:none;padding:10px;border-radius:10px">Cancelar</button>
-        </div>
-    </div>
+<div class="modal" id="modal">
+<div class="modal-content">
+<input id="nombre" placeholder="Nombre completo">
+<input id="puesto" placeholder="Puesto">
+<input id="area" placeholder="Área">
+<input id="oficina" placeholder="Oficina">
+<input id="correo" placeholder="Correo">
+<input id="telefono" placeholder="Teléfono">
+<button class="save" onclick="savePerson()">Guardar</button>
+<button class="close" onclick="closeModal()">Cancelar</button>
+</div>
 </div>
 
 <script>
-const people = [
-    {
-        nombre: "Joel Omar Cuellar Blanco",
-        puesto: "Secretario de Relaciones y Conflictos",
-        area: "Administrativo",
-        oficina: "Dirección",
-        correo: "joel.cuellar@caherengo.mx",
-        telefono: "3321836481"
-    }
+const CLAVE="KR@+0s117";
+let editIndex=null;
+
+let people=JSON.parse(localStorage.getItem("directorio"))||[
+{nombre:"Joel Omar Cuellar Blanco",puesto:"Secretario de Relaciones y Conflictos",area:"Administrativo",oficina:"Dirección",correo:"joel.cuellar@cahrengo.mx",telefono:"3321836481"}
 ];
 
-function renderCards(data) {
-    const cards = document.getElementById("cards");
-    cards.innerHTML = "";
-    data.forEach(p => {
-        cards.innerHTML += `
-        <div class="card">
-            <h2>${p.nombre}</h2>
-            <p><strong>Puesto:</strong> ${p.puesto}</p>
-            <p><strong>Área:</strong> ${p.area}</p>
-            <p><strong>Oficina:</strong> ${p.oficina}</p>
+function saveLocal(){localStorage.setItem("directorio",JSON.stringify(people));}
 
-            <div class="copy" onclick="copyText('${p.correo}', this)">${p.correo}</div>
-            <div class="copy" onclick="copyText('${p.telefono}', this)">${p.telefono}</div>
+function renderCards(data){
+cards.innerHTML="";
+data.forEach((p,i)=>{
+cards.innerHTML+=`
+<div class="card">
+<h3>${p.nombre}</h3>
+<p><strong>Puesto:</strong> ${p.puesto}</p>
+<p><strong>Área:</strong> ${p.area}</p>
+<p><strong>Oficina:</strong> ${p.oficina}</p>
 
-            <div class="actions">
-                <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
-                <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
-                <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-            </div>
-        </div>`;
-    });
+<div class="copy" onclick="copyText('${p.correo}',this)">${p.correo}</div>
+<div class="copy" onclick="copyText('${p.telefono}',this)">${p.telefono}</div>
+
+<div class="actions">
+<a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+<a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+<a class="wa" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+<button class="edit" onclick="editPerson(${i})"><i class="bi bi-pencil"></i></button>
+<button class="delete" onclick="deletePerson(${i})"><i class="bi bi-trash"></i></button>
+</div>
+</div>`;
+});
 }
 
-function copyText(text, el) {
-    navigator.clipboard.writeText(text);
-    el.classList.add("copied");
-    setTimeout(() => el.classList.remove("copied"), 1500);
+function copyText(t,e){
+navigator.clipboard.writeText(t);
+e.classList.add("copied");
+setTimeout(()=>e.classList.remove("copied"),1500);
 }
 
-function filterCards() {
-    const v = search.value.toLowerCase();
-    renderCards(people.filter(p =>
-        p.nombre.toLowerCase().includes(v) ||
-        p.puesto.toLowerCase().includes(v) ||
-        p.area.toLowerCase().includes(v) ||
-        p.oficina.toLowerCase().includes(v)
-    ));
+function openModal(){
+editIndex=null;
+modal.style.display="flex";
+document.querySelectorAll(".modal-content input").forEach(i=>i.value="");
 }
-
-function openModal(){ modal.style.display="flex"; }
-function closeModal(){ modal.style.display="none"; }
+function closeModal(){modal.style.display="none";}
 
 function savePerson(){
-    people.push({
-        nombre:mNombre.value,
-        puesto:mPuesto.value,
-        area:mArea.value,
-        oficina:mOficina.value,
-        correo:mCorreo.value,
-        telefono:mTelefono.value
-    });
-    renderCards(people);
-    closeModal();
+const obj={
+nombre:nombre.value,
+puesto:puesto.value,
+area:area.value,
+oficina:oficina.value,
+correo:correo.value,
+telefono:telefono.value
+};
+if(editIndex!==null) people[editIndex]=obj;
+else people.push(obj);
+saveLocal();renderCards(people);closeModal();
+}
+
+function editPerson(i){
+const pass=prompt("Clave de seguridad:");
+if(pass!==CLAVE)return alert("Clave incorrecta");
+editIndex=i;
+const p=people[i];
+nombre.value=p.nombre;
+puesto.value=p.puesto;
+area.value=p.area;
+oficina.value=p.oficina;
+correo.value=p.correo;
+telefono.value=p.telefono;
+modal.style.display="flex";
+}
+
+function deletePerson(i){
+const pass=prompt("Clave de seguridad:");
+if(pass!==CLAVE)return alert("Clave incorrecta");
+if(confirm("¿Eliminar registro?")){
+people.splice(i,1);
+saveLocal();renderCards(people);
+}
+}
+
+function filterCards(){
+const v=search.value.toLowerCase();
+renderCards(people.filter(p=>
+p.nombre.toLowerCase().includes(v)||
+p.puesto.toLowerCase().includes(v)||
+p.area.toLowerCase().includes(v)||
+p.oficina.toLowerCase().includes(v)
+));
 }
 
 renderCards(people);
