@@ -5,268 +5,460 @@
 <title>Directorio General | Cahrengo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a2e0e9c6f4.js" crossorigin="anonymous"></script>
 
 <style>
-*{box-sizing:border-box;font-family:Segoe UI,Arial}
+:root{
+ --blue:#2563eb;
+ --bg:#020617;
+ --card:#0f172a;
+ --muted:#94a3b8;
+}
+*{box-sizing:border-box}
 body{
-  margin:0;
-  background:linear-gradient(180deg,#0b1c3d,#050b1a);
-  color:#fff;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:linear-gradient(180deg,#0f172a,#020617);
+ color:#fff;
 }
-header{
-  background:linear-gradient(90deg,#2563eb,#1e40af);
-  padding:30px;
-  text-align:center;
-}
-header h1{margin:0;font-size:28px}
-header p{opacity:.9}
 
+/* HEADER */
+header{
+ background:linear-gradient(90deg,#2563eb,#1e40af);
+ padding:28px 20px;
+ text-align:center;
+}
+header h1{margin:0}
+header p{margin:6px 0 0}
+
+/* MAPAS */
+.map-links{
+ margin-top:16px;
+ display:flex;
+ justify-content:center;
+ gap:26px;
+}
+.map-links a{
+ text-decoration:none;
+ color:white;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:6px;
+ padding:12px;
+ border-radius:14px;
+ background:rgba(255,255,255,.18);
+ transition:.3s;
+ width:140px;
+}
+.map-links a:hover{
+ background:rgba(255,255,255,.32);
+ transform:translateY(-4px);
+}
+.map-links i{font-size:28px}
+.map-links span{
+ font-size:12px;
+ line-height:1.3;
+ text-align:center;
+}
+
+/* SEARCH */
 .search-box{
-  margin:20px auto;
-  max-width:500px;
+ display:flex;
+ justify-content:center;
+ margin:26px 0 10px;
 }
 .search-box input{
-  width:100%;
-  padding:14px;
-  border-radius:25px;
-  border:none;
-  font-size:15px;
+ width:90%;
+ max-width:420px;
+ padding:12px 18px;
+ border-radius:24px;
+ border:none;
+ outline:none;
 }
 
+/* FILTERS */
 .filters{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
+ display:flex;
+ gap:8px;
+ justify-content:center;
+ flex-wrap:wrap;
+ margin-bottom:20px;
 }
-.filters button{
-  padding:8px 14px;
-  border-radius:20px;
-  border:none;
-  cursor:pointer;
-  background:#0f172a;
-  color:#fff;
+.filter{
+ padding:6px 14px;
+ border-radius:16px;
+ background:#020617;
+ border:1px solid #334155;
+ cursor:pointer;
+ font-size:12px;
 }
-.filters button.active{background:#2563eb}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-  padding:20px;
+.filter.active{
+ background:var(--blue);
+ border-color:var(--blue);
 }
 
+/* CARDS */
+.container{
+ padding:20px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:20px;
+ justify-content:center;
+}
 .card{
-  background:linear-gradient(180deg,#0f172a,#020617);
-  border-radius:18px;
-  padding:20px;
-  position:relative;
-  animation:fade .4s ease;
+ background:rgba(15,23,42,.95);
+ border-radius:18px;
+ padding:20px;
+ width:320px;
+ position:relative;
+ animation:fadeIn .25s ease;
 }
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
-
-.card h3{margin:0}
-.tag{
-  display:inline-block;
-  background:#020617;
-  padding:5px 10px;
-  border-radius:14px;
-  font-size:12px;
-  margin:6px 0;
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:none}
 }
 
-.info{
-  background:#020617;
-  border-radius:12px;
-  padding:10px;
-  margin-top:8px;
-  word-break:break-all;
+.badge{
+ display:inline-block;
+ font-size:11px;
+ padding:4px 10px;
+ border-radius:14px;
+ background:#020617;
+ border:1px solid #334155;
+ margin-top:4px;
+ color:var(--muted);
+}
+
+.admin{
+ position:absolute;
+ top:12px;
+ right:12px;
+ display:flex;
+ gap:10px;
+}
+.admin i{
+ font-size:14px;
+ cursor:pointer;
+ opacity:.6;
+ transition:.2s;
+}
+.admin i:hover{opacity:1}
+
+.copy{
+ background:#020617;
+ padding:8px 12px;
+ border-radius:10px;
+ margin-top:8px;
+ cursor:pointer;
+ position:relative;
+ transition:.2s;
+ word-break:break-word;
+}
+.copy::after{
+ content:"Copiar";
+ position:absolute;
+ top:-26px;
+ right:10px;
+ background:var(--blue);
+ padding:3px 8px;
+ border-radius:8px;
+ font-size:11px;
+ opacity:0;
+ transition:.2s;
+}
+.copy:hover::after{opacity:1}
+.copy.copied::after{
+ content:"✔ Copiado";
+ background:#16a34a;
+ opacity:1;
 }
 
 .actions{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
+ display:flex;
+ gap:10px;
+ margin-top:14px;
 }
-.actions button{
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:16px;
+.actions a{
+ flex:1;
+ text-align:center;
+ padding:10px;
+ border-radius:12px;
+ color:#fff;
 }
-.mail{background:#2563eb;color:#fff}
-.phone{background:#10b981;color:#fff}
-.whats{background:#22c55e;color:#fff}
+.mail{background:#2563eb}
+.phone{background:#10b981}
+.chat{background:#22c55e}
 
-.edit-icons{
-  position:absolute;
-  top:10px;
-  right:10px;
-  display:flex;
-  gap:8px;
+.highlight{
+ background:rgba(37,99,235,.25);
+ padding:0 4px;
+ border-radius:6px;
+ font-weight:600;
 }
-.edit-icons i{
-  cursor:pointer;
-  font-size:14px;
-  opacity:.7;
-}
-.edit-icons i:hover{opacity:1}
 
+/* FAB */
 .fab{
-  position:fixed;
-  right:25px;
-  bottom:25px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#2563eb;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  cursor:pointer;
+ position:fixed;
+ bottom:24px;
+ right:24px;
+ width:56px;
+ height:56px;
+ border-radius:50%;
+ background:var(--blue);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:26px;
+ cursor:pointer;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
+
+/* MODALS */
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+ backdrop-filter:blur(4px);
+ display:none;
+ align-items:center;
+ justify-content:center;
+}
+.box{
+ background:#020617;
+ padding:20px;
+ border-radius:18px;
+ width:90%;
+ max-width:380px;
+ animation:scaleIn .2s ease;
+}
+@keyframes scaleIn{
+ from{transform:scale(.95);opacity:0}
+ to{transform:none;opacity:1}
+}
+.box input,select{
+ width:100%;
+ margin-top:10px;
+ padding:12px;
+ border-radius:10px;
+ border:1px solid #334155;
+ background:#020617;
+ color:#fff;
+}
+.modal-actions{
+ display:flex;
+ gap:10px;
+ margin-top:16px;
+}
+button{
+ flex:1;
+ padding:10px;
+ border-radius:10px;
+ border:none;
+ cursor:pointer;
+}
+.save{background:var(--blue);color:#fff}
+.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>📱 Directorio General</h1>
-  <p>Cahrengo · Uso interno</p>
+<h1>📘 Directorio General</h1>
+<p>Cahrengo · Uso interno</p>
+
+<div class="map-links">
+ <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw" target="_blank">
+  <i class="fa-solid fa-map-location-dot"></i>
+  <span>Mapa 1<br>Servicios Cahrengo</span>
+ </a>
+ <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ" target="_blank">
+  <i class="fa-solid fa-map-location-dot"></i>
+  <span>Mapa 2<br>Servicios Cahrengo</span>
+ </a>
+</div>
 </header>
 
 <div class="search-box">
-  <input id="search" placeholder="Buscar por nombre, área, correo, teléfono u oficina...">
+<input id="search" placeholder="Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
 </div>
 
 <div class="filters">
-  <button class="active" onclick="setOffice('')">Todas</button>
-  <button onclick="setOffice('Aguascalientes')">Aguascalientes</button>
-  <button onclick="setOffice('Zapopan')">Zapopan</button>
-  <button onclick="setOffice('Tlajomulco')">Tlajomulco</button>
-  <button onclick="setOffice('Guerrero Negro')">Guerrero Negro</button>
-  <button onclick="setOffice('Mérida')">Mérida</button>
+<div class="filter active" onclick="setOffice('')">Todas</div>
+<div class="filter" onclick="setOffice('Zapopan')">Zapopan</div>
+<div class="filter" onclick="setOffice('Tlajomulco')">Tlajomulco</div>
+<div class="filter" onclick="setOffice('Aguascalientes')">Aguascalientes</div>
+<div class="filter" onclick="setOffice('Guerrero Negro')">Guerrero Negro</div>
+<div class="filter" onclick="setOffice('Mérida')">Mérida</div>
 </div>
 
-<div class="cards" id="cards"></div>
+<div class="container" id="cards"></div>
 
-<div class="fab" onclick="addPerson()"><i class="fa fa-plus"></i></div>
+<div class="fab" onclick="askPass(openForm)">+</div>
+
+<!-- FORM -->
+<div class="modal" id="formModal">
+<div class="box">
+<h3 id="formTitle">Agregar</h3>
+<input id="nombre" placeholder="Nombre completo">
+<input id="puesto" placeholder="Puesto">
+<input id="area" placeholder="Área">
+<select id="oficina">
+<option>Zapopan</option>
+<option>Tlajomulco</option>
+<option>Aguascalientes</option>
+<option>Guerrero Negro</option>
+<option>Mérida</option>
+</select>
+<input id="correo" placeholder="Correo">
+<input id="telefono" placeholder="Teléfono">
+<div class="modal-actions">
+<button class="save" onclick="save()">Guardar</button>
+<button class="cancel" onclick="closeForm()">Cancelar</button>
+</div>
+</div>
+</div>
+
+<!-- PASSWORD -->
+<div class="modal" id="passModal">
+<div class="box">
+<h3>Acceso administrador</h3>
+<input id="pass" type="password" placeholder="Clave">
+<div class="modal-actions">
+<button class="save" onclick="checkPass()">Continuar</button>
+<button class="cancel" onclick="closePass()">Cancelar</button>
+</div>
+</div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getFirestore, collection, getDocs,
-  addDoc, deleteDoc, doc, updateDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
-  authDomain: "directorio-caherengo.firebaseapp.com",
-  projectId: "directorio-caherengo"
+const firebaseConfig={
+ apiKey:"AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+ authDomain:"directorio-caherengo.firebaseapp.com",
+ projectId:"directorio-caherengo"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const col=collection(db,"directorio");
 
-let data = [];
-let officeFilter = "";
+let allData=[],editId=null,afterPass=null,officeFilter="";
 
-const SECRET = "KR@+0s117";
+onSnapshot(col,s=>{
+ allData=[];
+ s.forEach(d=>allData.push({id:d.id,...d.data()}));
+ applyFilters();
+});
 
-async function load(){
-  const snap = await getDocs(collection(db,"directorio"));
-  data = snap.docs.map(d=>({id:d.id,...d.data()}));
-  render();
-}
-load();
-
-function render(){
-  const q = search.value.toLowerCase();
-  cards.innerHTML="";
-  data.filter(p=>{
-    return (!officeFilter || p.oficina===officeFilter) &&
-    Object.values(p).join(" ").toLowerCase().includes(q);
-  }).forEach(p=>{
-    cards.innerHTML+=`
-    <div class="card">
-      <div class="edit-icons">
-        <i class="fa fa-pen" onclick="edit('${p.id}')"></i>
-        <i class="fa fa-trash" onclick="remove('${p.id}')"></i>
-      </div>
-      <h3>${p.nombre}</h3>
-      <div>${p.area}</div>
-      <div>${p.puesto}</div>
-      <span class="tag">${p.oficina}</span>
-
-      <div class="info">${p.correo}</div>
-      <div class="info">${p.telefono}</div>
-
-      <div class="actions">
-        <button class="mail" onclick="copy('${p.correo}')"><i class="fa fa-envelope"></i></button>
-        <button class="phone" onclick="copy('${p.telefono}')"><i class="fa fa-phone"></i></button>
-        <button class="whats" onclick="window.open('https://wa.me/52${p.telefono.replace(/\\D/g,'')}')"><i class="fa fa-whatsapp"></i></button>
-      </div>
-    </div>`;
-  });
+function highlight(text){
+ const q=search.value.toLowerCase();
+ if(!q) return text;
+ return text.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
 }
 
-search.oninput=render;
+function render(list){
+ cards.innerHTML="";
+ list.forEach(p=>{
+ cards.innerHTML+=`
+ <div class="card">
+  <div class="admin">
+   <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
+   <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
+  </div>
+  <h3>${highlight(p.nombre)}</h3>
+  <p>${highlight(p.puesto)}</p>
+  <p>${highlight(p.area)}</p>
+  <span class="badge">${p.oficina}</span>
+  <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
+  <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
+  <div class="actions">
+   <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+   <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+   <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+  </div>
+ </div>`;
+ });
+}
+
+window.copyText=(el,text)=>{
+ navigator.clipboard.writeText(text);
+ el.classList.add("copied");
+ setTimeout(()=>el.classList.remove("copied"),1200);
+}
+
+window.applyFilters=()=>{
+ const q=search.value.toLowerCase();
+ render(allData.filter(p=>
+  (!officeFilter||p.oficina===officeFilter)&&
+  (p.nombre+p.area+p.correo+p.telefono+p.oficina).toLowerCase().includes(q)
+ ));
+}
+
 window.setOffice=o=>{
-  officeFilter=o;
-  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
-  render();
-};
-
-function auth(){
-  return prompt("Clave de autorización:");
+ officeFilter=o;
+ document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
+ event.target.classList.add("active");
+ applyFilters();
 }
 
-window.addPerson=async()=>{
-  if(auth()!==SECRET)return;
-  const nombre=prompt("Nombre completo");
-  if(!nombre)return;
-  await addDoc(collection(db,"directorio"),{
-    nombre,
-    area:prompt("Área"),
-    puesto:prompt("Puesto"),
-    oficina:prompt("Oficina"),
-    correo:prompt("Correo"),
-    telefono:prompt("Teléfono")
-  });
-  load();
-};
+window.askPass=fn=>{
+ afterPass=fn;
+ passModal.style.display="flex";
+}
 
-window.edit=async id=>{
-  if(auth()!==SECRET)return;
-  const p=data.find(x=>x.id===id);
-  await updateDoc(doc(db,"directorio",id),{
-    nombre:prompt("Nombre",p.nombre),
-    area:prompt("Área",p.area),
-    puesto:prompt("Puesto",p.puesto),
-    oficina:prompt("Oficina",p.oficina),
-    correo:prompt("Correo",p.correo),
-    telefono:prompt("Teléfono",p.telefono)
-  });
-  load();
-};
+window.checkPass=()=>{
+ if(pass.value==="KR@+0s117"){
+  passModal.style.display="none";
+  pass.value="";
+  afterPass();
+ }
+}
+
+window.openForm=()=>{
+ editId=null;
+ formTitle.innerText="Agregar";
+ formModal.style.display="flex";
+}
+
+window.edit=id=>{
+ const p=allData.find(x=>x.id===id);
+ editId=id;
+ nombre.value=p.nombre;
+ puesto.value=p.puesto;
+ area.value=p.area;
+ oficina.value=p.oficina;
+ correo.value=p.correo;
+ telefono.value=p.telefono;
+ formTitle.innerText="Editar";
+ formModal.style.display="flex";
+}
+
+window.save=async()=>{
+ const obj={
+  nombre:nombre.value,
+  puesto:puesto.value,
+  area:area.value,
+  oficina:oficina.value,
+  correo:correo.value,
+  telefono:telefono.value
+ };
+ editId
+  ? await updateDoc(doc(db,"directorio",editId),obj)
+  : await addDoc(col,obj);
+ closeForm();
+}
 
 window.remove=async id=>{
-  if(auth()!==SECRET)return;
-  if(confirm("¿Eliminar registro?")){
-    await deleteDoc(doc(db,"directorio",id));
-    load();
-  }
-};
+ await deleteDoc(doc(db,"directorio",id));
+}
 
-window.copy=t=>{
-  navigator.clipboard.writeText(t);
-};
+window.closeForm=()=>formModal.style.display="none";
+window.closePass=()=>passModal.style.display="none";
 </script>
 
 </body>
