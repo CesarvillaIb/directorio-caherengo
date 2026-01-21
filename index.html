@@ -5,54 +5,61 @@
 <title>Directorio General | CAHERENGO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ESTILOS -->
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   background:#f4f6fb;
 }
+
+/* HEADER */
 header{
   background:linear-gradient(135deg,#1e4ed8,#2563eb);
   color:white;
-  padding:25px;
+  padding:30px 15px;
   text-align:center;
 }
-header img{
-  width:90px;
-  margin-bottom:10px;
-}
 header h1{
-  margin:5px 0;
+  margin:10px 0 5px;
+  font-size:28px;
 }
 header p{
+  margin:0;
   opacity:.9;
 }
+.icon{
+  font-size:40px;
+}
 
+/* MAPAS */
 .maps{
   display:flex;
   justify-content:center;
   gap:15px;
-  margin:20px;
+  margin:25px 10px;
+  flex-wrap:wrap;
 }
 .map-btn{
   background:#e0e7ff;
-  padding:15px 25px;
+  padding:14px 22px;
   border-radius:14px;
   text-decoration:none;
   color:#1e40af;
   font-weight:600;
   transition:.3s;
+  text-align:center;
 }
 .map-btn:hover{
   background:#c7d2fe;
 }
 
-.search-box{
+/* BUSCADOR */
+.search{
   max-width:500px;
-  margin:20px auto;
+  margin:10px auto 20px;
+  padding:0 10px;
 }
-.search-box input{
+.search input{
   width:100%;
   padding:14px;
   border-radius:12px;
@@ -60,25 +67,20 @@ header p{
   font-size:16px;
 }
 
+/* TARJETAS */
 .container{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
   padding:15px;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:15px;
+  gap:16px;
 }
-
 .card{
   background:white;
   border-radius:16px;
   padding:18px;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
-  animation:fade .4s ease;
-}
-@keyframes fade{
-  from{opacity:0; transform:translateY(10px)}
-  to{opacity:1; transform:translateY(0)}
 }
 .card h3{margin:0}
 .card small{color:#555}
@@ -94,9 +96,8 @@ header p{
   cursor:pointer;
 }
 .copy{background:#e0f2fe}
-.edit{background:#fef3c7}
-.delete{background:#fee2e2}
 
+/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
@@ -109,9 +110,9 @@ footer{
 <body>
 
 <header>
-  <img src="ogo-caherengo.png.jpg" alt="CAHERENGO">
+  <div class="icon">📘</div>
   <h1>Directorio General</h1>
-  <p><b>CAHERENGO – Uso interno</b></p>
+  <p><b>CAHERENGO · Uso interno</b></p>
 </header>
 
 <div class="maps">
@@ -126,7 +127,7 @@ footer{
   </a>
 </div>
 
-<div class="search-box">
+<div class="search">
   <input id="search" placeholder="🔍 Buscar por nombre, área o teléfono">
 </div>
 
@@ -151,7 +152,6 @@ const db = firebase.firestore();
 
 const cards=document.getElementById("cards");
 const search=document.getElementById("search");
-
 let data=[];
 
 db.collection("directorio").onSnapshot(snap=>{
@@ -196,4 +196,3 @@ function copy(t){
 
 </body>
 </html>
-
