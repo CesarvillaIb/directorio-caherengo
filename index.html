@@ -5,284 +5,194 @@
 <title>Directorio General | CAHERENGO</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+<!-- ESTILOS -->
 <style>
-:root{
- --blue:#2563eb;
- --bg:#020617;
- --card:#0f172a;
- --muted:#94a3b8;
-}
-*{box-sizing:border-box}
 body{
- margin:0;
- font-family:Arial,Helvetica,sans-serif;
- background:linear-gradient(180deg,#0f172a,#020617);
- color:#fff;
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#f4f6fb;
 }
-
-/* ===== HEADER ===== */
 header{
- background:linear-gradient(90deg,#2563eb,#1e40af);
- padding:32px 20px;
- text-align:center;
+  background:linear-gradient(135deg,#1e4ed8,#2563eb);
+  color:white;
+  padding:25px;
+  text-align:center;
 }
-.header-logo{
- display:flex;
- justify-content:center;
- align-items:center;
- gap:16px;
-}
-.header-logo img{
- width:52px;
- height:52px;
+header img{
+  width:90px;
+  margin-bottom:10px;
 }
 header h1{
- margin:0;
- font-size:30px;
- letter-spacing:.5px;
+  margin:5px 0;
 }
 header p{
- margin:6px 0 0;
- font-size:14px;
- opacity:.9;
- letter-spacing:1px;
+  opacity:.9;
 }
 
-/* MAPAS */
 .maps{
- margin-top:18px;
- display:flex;
- justify-content:center;
- gap:14px;
- flex-wrap:wrap;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:20px;
 }
 .map-btn{
- background:rgba(255,255,255,.12);
- padding:12px 18px;
- border-radius:14px;
- text-decoration:none;
- color:#fff;
- display:flex;
- align-items:center;
- gap:8px;
- font-size:13px;
- transition:.2s;
+  background:#e0e7ff;
+  padding:15px 25px;
+  border-radius:14px;
+  text-decoration:none;
+  color:#1e40af;
+  font-weight:600;
+  transition:.3s;
 }
 .map-btn:hover{
- background:rgba(255,255,255,.22);
- transform:translateY(-2px);
+  background:#c7d2fe;
 }
 
-/* BUSCADOR */
 .search-box{
- display:flex;
- justify-content:center;
- margin:26px 0 10px;
+  max-width:500px;
+  margin:20px auto;
 }
 .search-box input{
- width:90%;
- max-width:420px;
- padding:12px 18px;
- border-radius:24px;
- border:none;
- outline:none;
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-size:16px;
 }
 
-/* FILTROS */
-.filters{
- display:flex;
- gap:8px;
- justify-content:center;
- flex-wrap:wrap;
- margin-bottom:20px;
-}
-.filter{
- padding:6px 14px;
- border-radius:16px;
- background:#020617;
- border:1px solid #334155;
- cursor:pointer;
- font-size:12px;
-}
-.filter.active{
- background:var(--blue);
- border-color:var(--blue);
-}
-
-/* TARJETAS */
 .container{
- padding:20px;
- display:flex;
- flex-wrap:wrap;
- gap:20px;
- justify-content:center;
+  max-width:1000px;
+  margin:auto;
+  padding:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:15px;
 }
+
 .card{
- background:rgba(15,23,42,.95);
- border-radius:18px;
- padding:20px;
- width:320px;
- position:relative;
- animation:fadeIn .25s ease;
+  background:white;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  animation:fade .4s ease;
 }
-@keyframes fadeIn{
- from{opacity:0;transform:translateY(6px)}
- to{opacity:1}
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px)}
+  to{opacity:1; transform:translateY(0)}
 }
-.admin{
- position:absolute;
- top:12px;
- right:12px;
- display:flex;
- gap:10px;
-}
-.admin i{
- font-size:14px;
- cursor:pointer;
- opacity:.6;
-}
-.admin i:hover{opacity:1}
-.badge{
- display:inline-block;
- font-size:11px;
- padding:4px 10px;
- border-radius:14px;
- background:#020617;
- border:1px solid #334155;
- margin-top:4px;
- color:var(--muted);
-}
-
-/* COPIAR */
-.copy{
- background:#020617;
- padding:8px 12px;
- border-radius:10px;
- margin-top:8px;
- cursor:pointer;
- position:relative;
- word-break:break-word;
-}
-.copy::after{
- content:"Copiar";
- position:absolute;
- top:-26px;
- right:10px;
- background:var(--blue);
- padding:3px 8px;
- border-radius:8px;
- font-size:11px;
- opacity:0;
- transition:.2s;
-}
-.copy:hover::after{opacity:1}
-.copy.copied::after{
- content:"✔ Copiado";
- background:#16a34a;
- opacity:1;
-}
-
-/* ACCIONES */
+.card h3{margin:0}
+.card small{color:#555}
 .actions{
- display:flex;
- gap:10px;
- margin-top:14px;
+  margin-top:10px;
+  display:flex;
+  gap:10px;
 }
-.actions a{
- flex:1;
- text-align:center;
- padding:10px;
- border-radius:12px;
- color:#fff;
+.actions button{
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
 }
-.mail{background:#2563eb}
-.phone{background:#10b981}
-.chat{background:#22c55e}
+.copy{background:#e0f2fe}
+.edit{background:#fef3c7}
+.delete{background:#fee2e2}
 
-/* BOTÓN + */
-.fab{
- position:fixed;
- bottom:24px;
- right:24px;
- width:56px;
- height:56px;
- border-radius:50%;
- background:var(--blue);
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:26px;
- cursor:pointer;
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+  color:#555;
 }
-
-/* MODALES */
-.modal{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.6);
- backdrop-filter:blur(4px);
- display:none;
- align-items:center;
- justify-content:center;
-}
-.box{
- background:#020617;
- padding:20px;
- border-radius:18px;
- width:90%;
- max-width:380px;
-}
-.box input,select{
- width:100%;
- margin-top:10px;
- padding:12px;
- border-radius:10px;
- border:1px solid #334155;
- background:#020617;
- color:#fff;
-}
-.modal-actions{
- display:flex;
- gap:10px;
- margin-top:16px;
-}
-button{
- flex:1;
- padding:10px;
- border-radius:10px;
- border:none;
- cursor:pointer;
-}
-.save{background:var(--blue);color:#fff}
-.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="header-logo">
-    <img src="logo-caherengo.png" alt="CAHERENGO">
-    <h1>Directorio General</h1>
-  </div>
-  <p>CAHERENGO · USO INTERNO</p>
-
-  <div class="maps">
-    <a class="map-btn" target="_blank"
-      href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw">
-      <i class="bi bi-map"></i> Mapa 1 · Servicios Caherengo
-    </a>
-    <a class="map-btn" target="_blank"
-      href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ">
-      <i class="bi bi-map"></i> Mapa 2 · Servicios Caherengo
-    </a>
-  </div>
+  <img src="ogo-caherengo.png.jpg" alt="CAHERENGO">
+  <h1>Directorio General</h1>
+  <p><b>CAHERENGO – Uso interno</b></p>
 </header>
 
-<!-- TODO TU FIREBASE, CRUD, BUSCADOR, COPIAR, ETC
-     QUEDA EXACTAMENTE IGUAL QUE ANTES -->
+<div class="maps">
+  <a class="map-btn" target="_blank"
+     href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw">
+     📍 Mapa 1<br>Servicios Caherengo
+  </a>
+
+  <a class="map-btn" target="_blank"
+     href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ">
+     📍 Mapa 2<br>Servicios Caherengo
+  </a>
+</div>
+
+<div class="search-box">
+  <input id="search" placeholder="🔍 Buscar por nombre, área o teléfono">
+</div>
+
+<div class="container" id="cards"></div>
+
+<footer>
+Oficinas: Aguascalientes · Zapopan · Tlajomulco · Guerrero Negro · Mérida
+</footer>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+  authDomain: "directorio-caherengo.firebaseapp.com",
+  projectId: "directorio-caherengo",
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const cards=document.getElementById("cards");
+const search=document.getElementById("search");
+
+let data=[];
+
+db.collection("directorio").onSnapshot(snap=>{
+  data=[];
+  snap.forEach(d=>data.push({id:d.id,...d.data()}));
+  render(data);
+});
+
+function render(list){
+  cards.innerHTML="";
+  list.forEach(d=>{
+    cards.innerHTML+=`
+      <div class="card">
+        <h3>${d.nombre}</h3>
+        <small>${d.puesto} · ${d.area}</small><br>
+        📍 ${d.oficina}<br>
+        📧 ${d.correo}<br>
+        📞 ${d.telefono}
+        <div class="actions">
+          <button class="copy" onclick="copy('${d.correo}')">📧 Copiar</button>
+          <button class="copy" onclick="copy('${d.telefono}')">📞 Copiar</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+search.oninput=()=>{
+  const v=search.value.toLowerCase();
+  render(data.filter(d=>
+    d.nombre.toLowerCase().includes(v)||
+    d.area.toLowerCase().includes(v)||
+    d.telefono.includes(v)
+  ));
+};
+
+function copy(t){
+  navigator.clipboard.writeText(t);
+  alert("Copiado");
+}
+</script>
 
 </body>
 </html>
