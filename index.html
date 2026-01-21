@@ -2,196 +2,463 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Directorio General | CAHERENGO</title>
+<title>Directorio General | Cahrengo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a2e0e9c6f4.js" crossorigin="anonymous"></script>
+
 <style>
+:root{
+ --blue:#2563eb;
+ --bg:#020617;
+ --card:#0f172a;
+ --muted:#94a3b8;
+}
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:#f4f6fb;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:linear-gradient(180deg,#0f172a,#020617);
+ color:#fff;
 }
 
 /* HEADER */
 header{
-  background:linear-gradient(135deg,#1e4ed8,#2563eb);
-  color:white;
-  padding:30px 15px;
-  text-align:center;
+ background:linear-gradient(90deg,#2563eb,#1e40af);
+ padding:28px 20px;
+ text-align:center;
 }
-header h1{
-  margin:10px 0 5px;
-  font-size:28px;
-}
-header p{
-  margin:0;
-  opacity:.9;
-}
-.icon{
-  font-size:40px;
-}
+header h1{margin:0}
+header p{margin:6px 0 0}
 
 /* MAPAS */
-.maps{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin:25px 10px;
-  flex-wrap:wrap;
+.map-links{
+ margin-top:16px;
+ display:flex;
+ justify-content:center;
+ gap:26px;
 }
-.map-btn{
-  background:#e0e7ff;
-  padding:14px 22px;
-  border-radius:14px;
-  text-decoration:none;
-  color:#1e40af;
-  font-weight:600;
-  transition:.3s;
-  text-align:center;
+.map-links a{
+ text-decoration:none;
+ color:white;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:6px;
+ padding:12px;
+ border-radius:14px;
+ background:rgba(255,255,255,.18);
+ transition:.3s;
+ width:140px;
 }
-.map-btn:hover{
-  background:#c7d2fe;
+.map-links a:hover{
+ background:rgba(255,255,255,.32);
+ transform:translateY(-4px);
 }
-
-/* BUSCADOR */
-.search{
-  max-width:500px;
-  margin:10px auto 20px;
-  padding:0 10px;
-}
-.search input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #ccc;
-  font-size:16px;
+.map-links i{font-size:28px}
+.map-links span{
+ font-size:12px;
+ line-height:1.3;
+ text-align:center;
 }
 
-/* TARJETAS */
+/* SEARCH */
+.search-box{
+ display:flex;
+ justify-content:center;
+ margin:26px 0 10px;
+}
+.search-box input{
+ width:90%;
+ max-width:420px;
+ padding:12px 18px;
+ border-radius:24px;
+ border:none;
+ outline:none;
+}
+
+/* FILTERS */
+.filters{
+ display:flex;
+ gap:8px;
+ justify-content:center;
+ flex-wrap:wrap;
+ margin-bottom:20px;
+}
+.filter{
+ padding:6px 14px;
+ border-radius:16px;
+ background:#020617;
+ border:1px solid #334155;
+ cursor:pointer;
+ font-size:12px;
+}
+.filter.active{
+ background:var(--blue);
+ border-color:var(--blue);
+}
+
+/* CARDS */
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:15px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:16px;
+ padding:20px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:20px;
+ justify-content:center;
 }
 .card{
-  background:white;
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+ background:rgba(15,23,42,.95);
+ border-radius:18px;
+ padding:20px;
+ width:320px;
+ position:relative;
+ animation:fadeIn .25s ease;
 }
-.card h3{margin:0}
-.card small{color:#555}
-.actions{
-  margin-top:10px;
-  display:flex;
-  gap:10px;
+@keyframes fadeIn{
+ from{opacity:0;transform:translateY(8px)}
+ to{opacity:1;transform:none}
 }
-.actions button{
-  border:none;
-  padding:8px 12px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.copy{background:#e0f2fe}
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  font-size:14px;
-  color:#555;
+.badge{
+ display:inline-block;
+ font-size:11px;
+ padding:4px 10px;
+ border-radius:14px;
+ background:#020617;
+ border:1px solid #334155;
+ margin-top:4px;
+ color:var(--muted);
 }
+
+.admin{
+ position:absolute;
+ top:12px;
+ right:12px;
+ display:flex;
+ gap:10px;
+}
+.admin i{
+ font-size:14px;
+ cursor:pointer;
+ opacity:.6;
+ transition:.2s;
+}
+.admin i:hover{opacity:1}
+
+.copy{
+ background:#020617;
+ padding:8px 12px;
+ border-radius:10px;
+ margin-top:8px;
+ cursor:pointer;
+ position:relative;
+ transition:.2s;
+ word-break:break-word;
+}
+.copy::after{
+ content:"Copiar";
+ position:absolute;
+ top:-26px;
+ right:10px;
+ background:var(--blue);
+ padding:3px 8px;
+ border-radius:8px;
+ font-size:11px;
+ opacity:0;
+ transition:.2s;
+}
+.copy:hover::after{opacity:1}
+.copy.copied::after{
+ content:"✔ Copiado";
+ background:#16a34a;
+ opacity:1;
+}
+
+.actions{
+ display:flex;
+ gap:10px;
+ margin-top:14px;
+}
+.actions a{
+ flex:1;
+ text-align:center;
+ padding:10px;
+ border-radius:12px;
+ color:#fff;
+}
+.mail{background:#2563eb}
+.phone{background:#10b981}
+.chat{background:#22c55e}
+
+.highlight{
+ background:rgba(37,99,235,.25);
+ padding:0 4px;
+ border-radius:6px;
+ font-weight:600;
+}
+
+/* FAB */
+.fab{
+ position:fixed;
+ bottom:24px;
+ right:24px;
+ width:56px;
+ height:56px;
+ border-radius:50%;
+ background:var(--blue);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:26px;
+ cursor:pointer;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* MODALS */
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.6);
+ backdrop-filter:blur(4px);
+ display:none;
+ align-items:center;
+ justify-content:center;
+}
+.box{
+ background:#020617;
+ padding:20px;
+ border-radius:18px;
+ width:90%;
+ max-width:380px;
+ animation:scaleIn .2s ease;
+}
+@keyframes scaleIn{
+ from{transform:scale(.95);opacity:0}
+ to{transform:none;opacity:1}
+}
+.box input,select{
+ width:100%;
+ margin-top:10px;
+ padding:12px;
+ border-radius:10px;
+ border:1px solid #334155;
+ background:#020617;
+ color:#fff;
+}
+.modal-actions{
+ display:flex;
+ gap:10px;
+ margin-top:16px;
+}
+button{
+ flex:1;
+ padding:10px;
+ border-radius:10px;
+ border:none;
+ cursor:pointer;
+}
+.save{background:var(--blue);color:#fff}
+.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="icon">📘</div>
-  <h1>Directorio General</h1>
-  <p><b>CAHERENGO · Uso interno</b></p>
+<h1>📘 Directorio General</h1>
+<p>Cahrengo · Uso interno</p>
+
+<div class="map-links">
+ <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw" target="_blank">
+  <i class="fa-solid fa-map-location-dot"></i>
+  <span>Mapa 1<br>Servicios Cahrengo</span>
+ </a>
+ <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ" target="_blank">
+  <i class="fa-solid fa-map-location-dot"></i>
+  <span>Mapa 2<br>Servicios Cahrengo</span>
+ </a>
+</div>
 </header>
 
-<div class="maps">
-  <a class="map-btn" target="_blank"
-     href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw">
-     📍 Mapa 1<br>Servicios Caherengo
-  </a>
-
-  <a class="map-btn" target="_blank"
-     href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ">
-     📍 Mapa 2<br>Servicios Caherengo
-  </a>
+<div class="search-box">
+<input id="search" placeholder="Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
 </div>
 
-<div class="search">
-  <input id="search" placeholder="🔍 Buscar por nombre, área o teléfono">
+<div class="filters">
+<div class="filter active" onclick="setOffice('')">Todas</div>
+<div class="filter" onclick="setOffice('Zapopan')">Zapopan</div>
+<div class="filter" onclick="setOffice('Tlajomulco')">Tlajomulco</div>
+<div class="filter" onclick="setOffice('Aguascalientes')">Aguascalientes</div>
+<div class="filter" onclick="setOffice('Guerrero Negro')">Guerrero Negro</div>
+<div class="filter" onclick="setOffice('Mérida')">Mérida</div>
 </div>
 
 <div class="container" id="cards"></div>
 
-<footer>
-Oficinas: Aguascalientes · Zapopan · Tlajomulco · Guerrero Negro · Mérida
-</footer>
+<div class="fab" onclick="askPass(openForm)">+</div>
 
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<!-- FORM -->
+<div class="modal" id="formModal">
+<div class="box">
+<h3 id="formTitle">Agregar</h3>
+<input id="nombre" placeholder="Nombre completo">
+<input id="puesto" placeholder="Puesto">
+<input id="area" placeholder="Área">
+<select id="oficina">
+<option>Zapopan</option>
+<option>Tlajomulco</option>
+<option>Aguascalientes</option>
+<option>Guerrero Negro</option>
+<option>Mérida</option>
+</select>
+<input id="correo" placeholder="Correo">
+<input id="telefono" placeholder="Teléfono">
+<div class="modal-actions">
+<button class="save" onclick="save()">Guardar</button>
+<button class="cancel" onclick="closeForm()">Cancelar</button>
+</div>
+</div>
+</div>
 
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
-  authDomain: "directorio-caherengo.firebaseapp.com",
-  projectId: "directorio-caherengo",
+<!-- PASSWORD -->
+<div class="modal" id="passModal">
+<div class="box">
+<h3>Acceso administrador</h3>
+<input id="pass" type="password" placeholder="Clave">
+<div class="modal-actions">
+<button class="save" onclick="checkPass()">Continuar</button>
+<button class="cancel" onclick="closePass()">Cancelar</button>
+</div>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+ authDomain:"directorio-caherengo.firebaseapp.com",
+ projectId:"directorio-caherengo"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
-const cards=document.getElementById("cards");
-const search=document.getElementById("search");
-let data=[];
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const col=collection(db,"directorio");
 
-db.collection("directorio").onSnapshot(snap=>{
-  data=[];
-  snap.forEach(d=>data.push({id:d.id,...d.data()}));
-  render(data);
+let allData=[],editId=null,afterPass=null,officeFilter="";
+
+onSnapshot(col,s=>{
+ allData=[];
+ s.forEach(d=>allData.push({id:d.id,...d.data()}));
+ applyFilters();
 });
 
+function highlight(text){
+ const q=search.value.toLowerCase();
+ if(!q) return text;
+ return text.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
+}
+
 function render(list){
-  cards.innerHTML="";
-  list.forEach(d=>{
-    cards.innerHTML+=`
-      <div class="card">
-        <h3>${d.nombre}</h3>
-        <small>${d.puesto} · ${d.area}</small><br>
-        📍 ${d.oficina}<br>
-        📧 ${d.correo}<br>
-        📞 ${d.telefono}
-        <div class="actions">
-          <button class="copy" onclick="copy('${d.correo}')">📧 Copiar</button>
-          <button class="copy" onclick="copy('${d.telefono}')">📞 Copiar</button>
-        </div>
-      </div>
-    `;
-  });
+ cards.innerHTML="";
+ list.forEach(p=>{
+ cards.innerHTML+=`
+ <div class="card">
+  <div class="admin">
+   <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
+   <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
+  </div>
+  <h3>${highlight(p.nombre)}</h3>
+  <p>${highlight(p.puesto)}</p>
+  <p>${highlight(p.area)}</p>
+  <span class="badge">${p.oficina}</span>
+  <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
+  <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
+  <div class="actions">
+   <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+   <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+   <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+  </div>
+ </div>`;
+ });
 }
 
-search.oninput=()=>{
-  const v=search.value.toLowerCase();
-  render(data.filter(d=>
-    d.nombre.toLowerCase().includes(v)||
-    d.area.toLowerCase().includes(v)||
-    d.telefono.includes(v)
-  ));
-};
-
-function copy(t){
-  navigator.clipboard.writeText(t);
-  alert("Copiado");
+window.copyText=(el,text)=>{
+ navigator.clipboard.writeText(text);
+ el.classList.add("copied");
+ setTimeout(()=>el.classList.remove("copied"),1200);
 }
+
+window.applyFilters=()=>{
+ const q=search.value.toLowerCase();
+ render(allData.filter(p=>
+  (!officeFilter||p.oficina===officeFilter)&&
+  (p.nombre+p.area+p.correo+p.telefono+p.oficina).toLowerCase().includes(q)
+ ));
+}
+
+window.setOffice=o=>{
+ officeFilter=o;
+ document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
+ event.target.classList.add("active");
+ applyFilters();
+}
+
+window.askPass=fn=>{
+ afterPass=fn;
+ passModal.style.display="flex";
+}
+
+window.checkPass=()=>{
+ if(pass.value==="KR@+0s117"){
+  passModal.style.display="none";
+  pass.value="";
+  afterPass();
+ }
+}
+
+window.openForm=()=>{
+ editId=null;
+ formTitle.innerText="Agregar";
+ formModal.style.display="flex";
+}
+
+window.edit=id=>{
+ const p=allData.find(x=>x.id===id);
+ editId=id;
+ nombre.value=p.nombre;
+ puesto.value=p.puesto;
+ area.value=p.area;
+ oficina.value=p.oficina;
+ correo.value=p.correo;
+ telefono.value=p.telefono;
+ formTitle.innerText="Editar";
+ formModal.style.display="flex";
+}
+
+window.save=async()=>{
+ const obj={
+  nombre:nombre.value,
+  puesto:puesto.value,
+  area:area.value,
+  oficina:oficina.value,
+  correo:correo.value,
+  telefono:telefono.value
+ };
+ editId
+  ? await updateDoc(doc(db,"directorio",editId),obj)
+  : await addDoc(col,obj);
+ closeForm();
+}
+
+window.remove=async id=>{
+ await deleteDoc(doc(db,"directorio",id));
+}
+
+window.closeForm=()=>formModal.style.display="none";
+window.closePass=()=>passModal.style.display="none";
 </script>
 
 </body>
