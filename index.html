@@ -32,35 +32,41 @@ header{
 header h1{margin:0}
 header p{margin:6px 0 0}
 
-/* MAPAS */
+/* LOGO SECURITY */
+.security-walk{
+ position:absolute;
+ bottom:-6px;
+ right:-6px;
+ font-size:18px;
+ color:#22c55e;
+ animation:walk 3s ease-in-out infinite;
+ opacity:.9;
+}
+@keyframes walk{
+ 0%{transform:translateX(0)}
+ 50%{transform:translateX(-6px)}
+ 100%{transform:translateX(0)}
+}
+
+/* MAP LINKS */
 .map-links{
- margin-top:16px;
  display:flex;
  justify-content:center;
- gap:26px;
+ gap:10px;
+ margin-top:10px;
 }
 .map-links a{
+ padding:6px 14px;
+ border-radius:999px;
+ background:rgba(255,255,255,.08);
+ border:1px solid rgba(255,255,255,.18);
+ color:#fff;
  text-decoration:none;
- color:white;
- display:flex;
- flex-direction:column;
- align-items:center;
- gap:6px;
- padding:12px;
- border-radius:14px;
- background:rgba(255,255,255,.18);
- transition:.3s;
- width:140px;
+ font-size:12px;
+ transition:.2s;
 }
 .map-links a:hover{
- background:rgba(255,255,255,.32);
- transform:translateY(-4px);
-}
-.map-links i{font-size:28px}
-.map-links span{
- font-size:12px;
- line-height:1.3;
- text-align:center;
+ background:rgba(255,255,255,.22);
 }
 
 /* SEARCH */
@@ -117,18 +123,7 @@ header p{margin:6px 0 0}
 }
 @keyframes fadeIn{
  from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:none}
-}
-
-.badge{
- display:inline-block;
- font-size:11px;
- padding:4px 10px;
- border-radius:14px;
- background:#020617;
- border:1px solid #334155;
- margin-top:4px;
- color:var(--muted);
+ to{opacity:1}
 }
 
 .admin{
@@ -139,12 +134,19 @@ header p{margin:6px 0 0}
  gap:10px;
 }
 .admin i{
- font-size:14px;
  cursor:pointer;
  opacity:.6;
- transition:.2s;
 }
 .admin i:hover{opacity:1}
+
+.badge{
+ font-size:11px;
+ padding:4px 10px;
+ border-radius:14px;
+ background:#020617;
+ border:1px solid #334155;
+ color:var(--muted);
+}
 
 .copy{
  background:#020617;
@@ -153,13 +155,11 @@ header p{margin:6px 0 0}
  margin-top:8px;
  cursor:pointer;
  position:relative;
- transition:.2s;
- word-break:break-word;
 }
 .copy::after{
  content:"Copiar";
  position:absolute;
- top:-26px;
+ top:-24px;
  right:10px;
  background:var(--blue);
  padding:3px 8px;
@@ -212,7 +212,6 @@ header p{margin:6px 0 0}
  justify-content:center;
  font-size:26px;
  cursor:pointer;
- box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
 /* MODALS */
@@ -231,11 +230,6 @@ header p{margin:6px 0 0}
  border-radius:18px;
  width:90%;
  max-width:380px;
- animation:scaleIn .2s ease;
-}
-@keyframes scaleIn{
- from{transform:scale(.95);opacity:0}
- to{transform:none;opacity:1}
 }
 .box input,select{
  width:100%;
@@ -264,56 +258,25 @@ button{
 </head>
 
 <body>
- 
+
 <header>
-  <img src="logo-caherengo.png.jpg" alt="CAHERENGO"
-       style="width:100px;border-radius:14px;
-              box-shadow:0 8px 20px rgba(0,0,0,.25);
-              margin-bottom:12px;">
+  <div style="position:relative;display:inline-block;">
+    <img src="logo-caherengo.png.jpg" alt="CAHERENGO"
+     style="width:100px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.25);">
+    <i class="fa-solid fa-user-shield security-walk"></i>
+  </div>
 
   <h1>Directorio General</h1>
   <p><b>CAHERENGO · Uso interno</b></p>
 
-<div style="
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:10px;
-">
-  <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 1 Servicios Caherengo
-  </a>
-
-  <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 2 Servicios Caherengo
-  </a>
-</div>
- </header>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw" target="_blank">📍 Mapa 1</a>
+    <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ" target="_blank">📍 Mapa 2</a>
+  </div>
+</header>
 
 <div class="search-box">
-<input id="search" placeholder="🔍 Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
+<input id="search" placeholder="🔍 Buscar..." onkeyup="applyFilters()">
 </div>
 
 <div class="filters">
@@ -326,22 +289,18 @@ button{
 </div>
 
 <div class="container" id="cards"></div>
-
 <div class="fab" onclick="askPass(openForm)">+</div>
 
-<!-- FORM -->
+<!-- MODALS -->
 <div class="modal" id="formModal">
 <div class="box">
 <h3 id="formTitle">Agregar</h3>
-<input id="nombre" placeholder="Nombre completo">
+<input id="nombre" placeholder="Nombre">
 <input id="puesto" placeholder="Puesto">
 <input id="area" placeholder="Área">
 <select id="oficina">
-<option>Zapopan</option>
-<option>Tlajomulco</option>
-<option>Aguascalientes</option>
-<option>Guerrero Negro</option>
-<option>Mérida</option>
+<option>Zapopan</option><option>Tlajomulco</option>
+<option>Aguascalientes</option><option>Guerrero Negro</option><option>Mérida</option>
 </select>
 <input id="correo" placeholder="Correo">
 <input id="telefono" placeholder="Teléfono">
@@ -352,7 +311,6 @@ button{
 </div>
 </div>
 
-<!-- PASSWORD -->
 <div class="modal" id="passModal">
 <div class="box">
 <h3>Acceso administrador</h3>
@@ -386,10 +344,10 @@ onSnapshot(col,s=>{
  applyFilters();
 });
 
-function highlight(text){
+function highlight(t){
  const q=search.value.toLowerCase();
- if(!q) return text;
- return text.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
+ if(!q) return t;
+ return t.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
 }
 
 function render(list){
@@ -452,7 +410,6 @@ window.checkPass=()=>{
 
 window.openForm=()=>{
  editId=null;
- formTitle.innerText="Agregar";
  formModal.style.display="flex";
 }
 
@@ -465,32 +422,20 @@ window.edit=id=>{
  oficina.value=p.oficina;
  correo.value=p.correo;
  telefono.value=p.telefono;
- formTitle.innerText="Editar";
  formModal.style.display="flex";
 }
 
 window.save=async()=>{
- const obj={
-  nombre:nombre.value,
-  puesto:puesto.value,
-  area:area.value,
-  oficina:oficina.value,
-  correo:correo.value,
-  telefono:telefono.value
- };
- editId
-  ? await updateDoc(doc(db,"directorio",editId),obj)
-  : await addDoc(col,obj);
+ const obj={nombre:nombre.value,puesto:puesto.value,area:area.value,oficina:oficina.value,correo:correo.value,telefono:telefono.value};
+ editId?await updateDoc(doc(db,"directorio",editId),obj):await addDoc(col,obj);
  closeForm();
 }
 
-window.remove=async id=>{
- await deleteDoc(doc(db,"directorio",id));
-}
-
+window.remove=id=>deleteDoc(doc(db,"directorio",id));
 window.closeForm=()=>formModal.style.display="none";
 window.closePass=()=>passModal.style.display="none";
 </script>
 
 </body>
 </html>
+
