@@ -32,6 +32,28 @@ header{
 header h1{margin:0}
 header p{margin:6px 0 0}
 
+/* === GUARDIA ANIMADO (AGREGADO) === */
+.guard-container{
+ position:relative;
+ width:100%;
+ height:38px;
+ overflow:hidden;
+ margin-top:8px;
+}
+.guard{
+ position:absolute;
+ left:-40px;
+ font-size:26px;
+ animation:walk 10s linear infinite;
+ filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));
+}
+@keyframes walk{
+ 0%{transform:translateX(0) scaleX(1)}
+ 49%{transform:translateX(calc(100vw + 40px)) scaleX(1)}
+ 50%{transform:translateX(calc(100vw + 40px)) scaleX(-1)}
+ 100%{transform:translateX(0) scaleX(-1)}
+}
+
 /* MAPAS */
 .map-links{
  margin-top:16px;
@@ -197,74 +219,11 @@ header p{margin:6px 0 0}
  border-radius:6px;
  font-weight:600;
 }
-
-/* FAB */
-.fab{
- position:fixed;
- bottom:24px;
- right:24px;
- width:56px;
- height:56px;
- border-radius:50%;
- background:var(--blue);
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:26px;
- cursor:pointer;
- box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-/* MODALS */
-.modal{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.6);
- backdrop-filter:blur(4px);
- display:none;
- align-items:center;
- justify-content:center;
-}
-.box{
- background:#020617;
- padding:20px;
- border-radius:18px;
- width:90%;
- max-width:380px;
- animation:scaleIn .2s ease;
-}
-@keyframes scaleIn{
- from{transform:scale(.95);opacity:0}
- to{transform:none;opacity:1}
-}
-.box input,select{
- width:100%;
- margin-top:10px;
- padding:12px;
- border-radius:10px;
- border:1px solid #334155;
- background:#020617;
- color:#fff;
-}
-.modal-actions{
- display:flex;
- gap:10px;
- margin-top:16px;
-}
-button{
- flex:1;
- padding:10px;
- border-radius:10px;
- border:none;
- cursor:pointer;
-}
-.save{background:var(--blue);color:#fff}
-.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
 </style>
 </head>
 
 <body>
- 
+
 <header>
   <img src="logo-caherengo.png.jpg" alt="CAHERENGO"
        style="width:100px;border-radius:14px;
@@ -274,44 +233,29 @@ button{
   <h1>Directorio General</h1>
   <p><b>CAHERENGO · Uso interno</b></p>
 
-<div style="
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:10px;
-">
-  <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 1 Servicios Caherengo
-  </a>
+  <!-- GUARDIA (AGREGADO) -->
+  <div class="guard-container">
+    <div class="guard">🛡️</div>
+  </div>
 
-  <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 2 Servicios Caherengo
-  </a>
-</div>
- </header>
+  <div style="display:flex;justify-content:center;gap:10px;margin-top:10px;">
+    <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw" target="_blank"
+       style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.08);
+              border:1px solid rgba(255,255,255,.18);color:#fff;
+              text-decoration:none;font-size:12px;">
+       📍 Mapa 1 Servicios Caherengo
+    </a>
 
+    <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ" target="_blank"
+       style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.08);
+              border:1px solid rgba(255,255,255,.18);color:#fff;
+              text-decoration:none;font-size:12px;">
+       📍 Mapa 2 Servicios Caherengo
+    </a>
+  </div>
+</header>
+
+<!-- RESTO DE TU CÓDIGO SIGUE IGUAL -->
 <div class="search-box">
 <input id="search" placeholder="🔍 Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
 </div>
