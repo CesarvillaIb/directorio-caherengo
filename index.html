@@ -312,6 +312,27 @@ button{
 </div>
  </header>
 
+
+
+<button onclick="exportarCSV()" style="
+  margin-top:14px;
+  padding:8px 18px;
+  border-radius:999px;
+  border:none;
+  background:#0ea5e9;
+  color:white;
+  cursor:pointer;
+  font-size:13px;
+">
+📥 Descargar directorio (CSV)
+</button>
+
+
+
+
+
+ 
+
 <div class="search-box">
 <input id="search" placeholder="🔍 Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
 </div>
@@ -490,6 +511,39 @@ window.remove=async id=>{
 
 window.closeForm=()=>formModal.style.display="none";
 window.closePass=()=>passModal.style.display="none";
+
+
+
+
+// EXPORTAR DIRECTORIO A CSV (OUTLOOK / EXCEL)
+window.exportarCSV = () => {
+  if (!allData.length) {
+    alert("No hay datos para exportar");
+    return;
+  }
+
+  let csv = "Nombre,Puesto,Área,Correo,Teléfono,Oficina\n";
+
+  allData.forEach(p => {
+    csv += `"${p.nombre}","${p.puesto}","${p.area}","${p.correo}","${p.telefono}","${p.oficina}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "Directorio_CAHERENGO.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+
+
+
+ 
+ 
 </script>
 
 </body>
