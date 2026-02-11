@@ -338,11 +338,14 @@ button{
     color:white;
     cursor:pointer;
     font-size:13px;
-    width:auto;
+    width:auto !important;
+    max-width:max-content;
     display:inline-block;
   ">
   📥 Descargar directorio (CSV)
   </button>
+</div>
+
 </div>
 
 <div class="search-box">
@@ -550,12 +553,6 @@ window.exportarCSV = () => {
   link.click();
   document.body.removeChild(link);
 };
-
-
-
-
- 
- 
 </script>
 
 </body>
