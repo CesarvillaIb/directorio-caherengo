@@ -148,23 +148,25 @@ header p{margin:6px 0 0}
  to{opacity:1;transform:none}
 }
 
-.badge{
- display:inline-block;
- font-size:11px;
- padding:4px 10px;
- border-radius:14px;
- background:#020617;
- border:1px solid #334155;
- margin-top:4px;
- color:var(--muted);
- width:fit-content;
+/* BADGES POR OFICINA — borde más visible dentro de la tarjeta */
+.badge {
+  display:inline-block;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:14px;
+  background:#020617;
+  border:2px solid; /* aumenta el grosor */
+  margin-top:4px;
+  color:var(--muted);
+  width:fit-content;
+}
 
-/* BORDES SUAVES POR OFICINA */
-.card.zapopan { border-color: rgba(37, 99, 235, 0.6); }       /* Azul */
-.card.tlajomulco { border-color: rgba(16, 185, 129, 0.6); }   /* Verde */
-.card.aguascalientes { border-color: rgba(251, 191, 36, 0.6); } /* Amarillo */
-.card.guerrero-negro { border-color: rgba(249, 115, 22, 0.6); } /* Naranja */
-.card.merida { border-color: rgba(236, 72, 153, 0.6); }       /* Rosa */
+/* BADGES POR OFICINA — colores distintivos */
+.badge.zapopan { border-color: rgba(37, 99, 235, 1); }       /* Azul */
+.badge.tlajomulco { border-color: rgba(16, 185, 129, 1); }   /* Verde */
+.badge.aguascalientes { border-color: rgba(251, 191, 36, 1); } /* Amarillo */
+.badge.guerrero-negro { border-color: rgba(249, 115, 22, 1); } /* Naranja */
+.badge.merida { border-color: rgba(236, 72, 153, 1); }       /* Rosa */
 }
 
 .admin i{
