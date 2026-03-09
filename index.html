@@ -131,7 +131,12 @@ header p{margin:6px 0 0}
  justify-content:space-between;
  min-height:260px;
 }
-
+/* BORDES SUAVES POR OFICINA */
+.card.zapopan { border-color: rgba(37, 99, 235, 0.25); }       /* Azul tenue */
+.card.tlajomulco { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
+.card.aguascalientes { border-color: rgba(251, 191, 36, 0.25); } /* Amarillo tenue */
+.card.guerrero-negro { border-color: rgba(249, 115, 22, 0.25); } /* Naranja tenue */
+.card.merida { border-color: rgba(139, 92, 246, 0.25); }       /* Morado tenue */
 /* ANIMACIÓN HOVER */
 .card:hover{
  transform:translateY(-6px) scale(1.02);
@@ -504,10 +509,8 @@ const vacantes = list.filter(p => p.estado === "vacante").length;
 document.getElementById("total").innerText = "👥 Empleados: " + total;
 document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
 
- cards.innerHTML="";
- list.forEach(p=>{
- cards.innerHTML+=`
- <div class="card">
+cards.innerHTML+=`
+ <div class="card ${p.oficina.toLowerCase().replace(/\s/g,'-')}">
   <div class="admin">
    <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
    <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
