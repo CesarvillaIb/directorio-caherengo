@@ -442,7 +442,13 @@ function render(list){
    <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
    <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
   </div>
-  <h3>${highlight(p.nombre)}</h3>
+  <h3>
+${p.estado==="vacante" ? "🔴 VACANTE" : highlight(p.nombre)}
+</h3>
+
+${p.estado==="vacante"
+ ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>'
+ : ''}
   <p>${highlight(p.puesto)}</p>
   <p>${highlight(p.area)}</p>
   <span class="badge">${p.oficina}</span>
