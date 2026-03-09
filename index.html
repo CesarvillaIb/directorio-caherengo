@@ -518,19 +518,6 @@ function render(list){
   const cards = document.getElementById("cards");
   cards.innerHTML = ""; // limpiar antes de renderizar
 
-
-  // CONTADOR
-  const total = list.filter(p => p.estado !== "vacante").length;
-  const vacantes = list.filter(p => p.estado === "vacante").length;
-
-  document.getElementById("total").innerText = "👥 Empleados: " + total;
-  document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
-
-  // Recorrer cada elemento de la lista
-function render(list){
-  const cards = document.getElementById("cards");
-  cards.innerHTML = ""; // limpiar antes de renderizar
-
   // CONTADORES
   const total = list.filter(p => p.estado !== "vacante").length;
   const vacantes = list.filter(p => p.estado === "vacante").length;
@@ -538,7 +525,7 @@ function render(list){
   document.getElementById("total").innerText = "👥 Empleados: " + total;
   document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
 
-  // Recorrer cada elemento de la lista
+  // Recorrer la lista
   list.forEach(p => {
     cards.innerHTML += `
       <div class="card ${normalizeOffice(p.oficina)}">
@@ -556,7 +543,7 @@ function render(list){
         <p>${highlight(p.puesto)}</p>
         <p>${highlight(p.area)}</p>
 
-        <!-- Badge de oficina con color según oficina -->
+        <!-- Badge de oficina -->
         <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina}</span>
 
         <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
