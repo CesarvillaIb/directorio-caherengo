@@ -500,6 +500,14 @@ onSnapshot(col,s=>{
  applyFilters();
 });
 
+// Normalizar nombre de oficina para clases CSS (quita acentos y espacios)
+function normalizeOffice(name) {
+  return name.toLowerCase()
+             .normalize("NFD")               // separar letras de acentos
+             .replace(/[\u0300-\u036f]/g,"") // quitar acentos
+             .replace(/\s/g,'-');            // espacios → guiones
+} 
+
 function highlight(text){
  const q=search.value.toLowerCase();
  if(!q) return text;
@@ -509,6 +517,7 @@ function highlight(text){
 function render(list){
   const cards = document.getElementById("cards");
   cards.innerHTML = ""; // limpiar antes de renderizar
+
 
   // CONTADOR
   const total = list.filter(p => p.estado !== "vacante").length;
@@ -520,7 +529,7 @@ function render(list){
   // Recorrer cada elemento de la lista
   list.forEach(p => {
     cards.innerHTML += `
-      <div class="card ${p.oficina.toLowerCase().replace(/\s/g,'-')}">
+     <div class="card ${normalizeOffice(p.oficina)}">
         <div class="admin">
           <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
           <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
@@ -531,7 +540,7 @@ function render(list){
           : ''}
         <p>${highlight(p.puesto)}</p>
         <p>${highlight(p.area)}</p>
-       <span class="badge ${p.oficina.toLowerCase().replace(/\s/g,'-')}">${p.oficina}</span>
+       <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina}</span>
         <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
         <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
         <div class="actions">
@@ -550,12 +559,12 @@ window.copyText=(el,text)=>{
  setTimeout(()=>el.classList.remove("copied"),1200);
 }
 
-window.applyFilters=()=>{
- const q=search.value.toLowerCase();
- render(allData.filter(p=>
-  (!officeFilter||p.oficina===officeFilter)&&
-  (p.nombre+p.area+p.correo+p.telefono+p.oficina).toLowerCase().includes(q)
- ));
+window.applyFilters = () => {
+  const q = search.value.toLowerCase();
+  render(allData.filter(p =>
+    (!officeFilter || normalizeOffice(p.oficina) === normalizeOffice(officeFilter)) &&
+    (p.nombre + p.area + p.correo + p.telefono + p.oficina).toLowerCase().includes(q)
+  ));
 }
 
 window.setOffice=(o, e)=>{
