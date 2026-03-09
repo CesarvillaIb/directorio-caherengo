@@ -235,8 +235,19 @@ header p{margin:6px 0 0}
  font-size:26px;
  cursor:pointer;
  box-shadow:0 10px 30px rgba(0,0,0,.4);
+ transition:all .25s ease;
 }
 
+/* animación al pasar el cursor */
+.fab:hover{
+ transform:scale(1.15) rotate(90deg);
+ box-shadow:0 14px 40px rgba(37,99,235,.6);
+}
+
+/* efecto al hacer click */
+.fab:active{
+ transform:scale(.95);
+}
 /* MODALS */
 .modal{
  position:fixed;
