@@ -516,20 +516,22 @@ window.edit=id=>{
  formModal.style.display="flex";
 }
 
-window.edit=id=>{
- const p=allData.find(x=>x.id===id);
- editId=id;
+ window.save=async()=>{
+ const obj={
+  nombre:nombre.value,
+  puesto:puesto.value,
+  area:area.value,
+  oficina:oficina.value,
+  correo:correo.value,
+  telefono:telefono.value,
+  estado:estado.value
+ };
 
- nombre.value=p.nombre;
- puesto.value=p.puesto;
- area.value=p.area;
- oficina.value=p.oficina;
- correo.value=p.correo;
- telefono.value=p.telefono;
- estado.value=p.estado || "activo";
+ editId
+  ? await updateDoc(doc(db,"directorio",editId),obj)
+  : await addDoc(col,obj);
 
- formTitle.innerText="Editar";
- formModal.style.display="flex";
+ closeForm();
 }
 
 window.remove=async id=>{
