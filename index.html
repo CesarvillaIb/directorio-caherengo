@@ -78,6 +78,12 @@ header p{margin:6px 0 0}
  border-radius:24px;
  border:none;
  outline:none;
+ transition:.25s;
+}
+
+.search-box input:focus{
+ transform:scale(1.03);
+ box-shadow:0 0 0 2px #2563eb;
 }
 
 /* FILTERS */
@@ -190,12 +196,18 @@ header p{margin:6px 0 0}
  gap:10px;
  margin-top:14px;
 }
-.actions a{
+..actions a{
  flex:1;
  text-align:center;
  padding:10px;
  border-radius:12px;
  color:#fff;
+ transition:all .2s ease;
+}
+
+.actions a:hover{
+ transform:scale(1.08);
+ box-shadow:0 6px 18px rgba(0,0,0,.35);
 }
 .mail{background:#2563eb}
 .phone{background:#10b981}
