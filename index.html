@@ -136,7 +136,7 @@ header p{margin:6px 0 0}
 .card.tlajomulco { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
 .card.aguascalientes { border-color: rgba(251, 191, 36, 0.25); } /* Amarillo tenue */
 .card.guerrero-negro { border-color: rgba(249, 115, 22, 0.25); } /* Naranja tenue */
-.card.merida { border-color: rgba(139, 92, 246, 0.25); }       /* Morado tenue */
+.card.merida { border-color: rgba(236, 72, 153, 0.25); }       /* Rosa tenue */
 /* ANIMACIÓN HOVER */
 .card:hover{
  transform:translateY(-6px) scale(1.02);
@@ -158,6 +158,12 @@ header p{margin:6px 0 0}
  margin-top:4px;
  color:var(--muted);
  width:fit-content;
+ /* BORDES SUAVES POR OFICINA */
+.badge.zapopan { border-color: rgba(37, 99, 235, 0.6); }
+.badge.tlajomulco { border-color: rgba(16, 185, 129, 0.6); }
+.badge.aguascalientes { border-color: rgba(251, 191, 36, 0.6); }
+.badge.guerrero-negro { border-color: rgba(249, 115, 22, 0.6); }
+.badge.merida { border-color: rgba(236, 72, 153, 0.6); } /* rosa */
 }
 
 .admin i{
@@ -552,11 +558,11 @@ window.applyFilters=()=>{
  ));
 }
 
-window.setOffice=o=>{
- officeFilter=o;
- document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
- event.target.classList.add("active");
- applyFilters();
+window.setOffice=(o, e)=>{
+  officeFilter=o;
+  document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
+  if(e) e.currentTarget.classList.add("active");
+  applyFilters();
 }
 
 window.askPass=fn=>{
