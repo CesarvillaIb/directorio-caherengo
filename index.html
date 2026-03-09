@@ -531,7 +531,7 @@ function render(list){
           : ''}
         <p>${highlight(p.puesto)}</p>
         <p>${highlight(p.area)}</p>
-        <span class="badge">${p.oficina}</span>
+       <span class="badge ${p.oficina.toLowerCase().replace(/\s/g,'-')}">${p.oficina}</span>
         <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
         <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
         <div class="actions">
