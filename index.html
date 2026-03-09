@@ -582,10 +582,10 @@ window.applyFilters = () => {
   ));
 }
 
-window.setOffice=(o, e)=>{
-  officeFilter=o;
-  document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));
-  if(e) e.currentTarget.classList.add("active");
+window.setOffice=(office, el)=>{
+  officeFilter = office;
+  document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
+  if(el) el.classList.add("active");
   applyFilters();
 }
 
