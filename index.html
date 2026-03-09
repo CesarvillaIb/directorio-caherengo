@@ -28,7 +28,9 @@ header{
  background:linear-gradient(90deg,#2563eb,#1e40af);
  padding:28px 20px;
  text-align:center;
+ position:relative;
 }
+
 header h1{margin:0}
 header p{margin:6px 0 0}
 
@@ -266,6 +268,26 @@ button{
 <body>
 
 <header>
+
+<div id="stats" style="
+position:absolute;
+top:18px;
+right:20px;
+display:flex;
+gap:16px;
+font-size:13px;
+font-weight:600;
+background:rgba(0,0,0,.25);
+padding:6px 12px;
+border-radius:10px;
+backdrop-filter:blur(4px);
+">
+
+<span id="total">👥 Empleados: 0</span>
+<span id="vacantes">🔴 Vacantes: 0</span>
+
+</div>
+
   <img src="logo-caherengo.png.jpg" alt="CAHERENGO"
        style="width:100px;border-radius:14px;
               box-shadow:0 8px 20px rgba(0,0,0,.25);
@@ -344,8 +366,6 @@ button{
   ">
   📥 Descargar directorio (CSV)
   </button>
-</div>
-
 </div>
 
 <div class="search-box">
@@ -434,6 +454,14 @@ function highlight(text){
 }
 
 function render(list){
+
+// CONTADOR
+const total = list.filter(p => p.estado !== "vacante").length;
+const vacantes = list.filter(p => p.estado === "vacante").length;
+
+document.getElementById("total").innerText = "👥 Empleados: " + total;
+document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
+
  cards.innerHTML="";
  list.forEach(p=>{
  cards.innerHTML+=`
