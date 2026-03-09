@@ -158,12 +158,12 @@ header p{margin:6px 0 0}
  margin-top:4px;
  color:var(--muted);
  width:fit-content;
- /* BORDES SUAVES POR OFICINA */
-.badge.zapopan { border-color: rgba(37, 99, 235, 0.25); }       /* Azul tenue */
-.badge.tlajomulco { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-.card.aguascalientes { border-color: rgba(251, 191, 36, 0.25); } /* Amarillo tenue */
-.card.guerrero-negro { border-color: rgba(249, 115, 22, 0.25); } /* Naranja tenue */
-.card.merida { border-color: rgba(236, 72, 153, 0.25); }       /* Rosa tenue */
+/* BADGES POR OFICINA */
+.badge.zapopan { border-color: rgba(37, 99, 235, 0.6); }
+.badge.tlajomulco { border-color: rgba(16, 185, 129, 0.6); }
+.badge.aguascalientes { border-color: rgba(251, 191, 36, 0.6); }
+.badge.guerrero-negro { border-color: rgba(249, 115, 22, 0.6); }
+.badge.merida { border-color: rgba(236, 72, 153, 0.6); }
 }
 
 .admin i{
@@ -527,22 +527,41 @@ function render(list){
   document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
 
   // Recorrer cada elemento de la lista
+function render(list){
+  const cards = document.getElementById("cards");
+  cards.innerHTML = ""; // limpiar antes de renderizar
+
+  // CONTADORES
+  const total = list.filter(p => p.estado !== "vacante").length;
+  const vacantes = list.filter(p => p.estado === "vacante").length;
+
+  document.getElementById("total").innerText = "👥 Empleados: " + total;
+  document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
+
+  // Recorrer cada elemento de la lista
   list.forEach(p => {
     cards.innerHTML += `
-     <div class="card ${normalizeOffice(p.oficina)}">
+      <div class="card ${normalizeOffice(p.oficina)}">
         <div class="admin">
           <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
           <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
         </div>
-        <h3>${p.estado==="vacante" ? "🔴 VACANTE" : highlight(p.nombre)}</h3>
-        ${p.estado==="vacante"
+
+        <h3>${p.estado === "vacante" ? "🔴 VACANTE" : highlight(p.nombre)}</h3>
+
+        ${p.estado === "vacante"
           ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>'
           : ''}
+
         <p>${highlight(p.puesto)}</p>
         <p>${highlight(p.area)}</p>
-       <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina}</span>
+
+        <!-- Badge de oficina con color según oficina -->
+        <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina}</span>
+
         <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
         <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
+
         <div class="actions">
           <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
           <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
