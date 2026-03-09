@@ -501,39 +501,41 @@ function highlight(text){
 }
 
 function render(list){
+  const cards = document.getElementById("cards");
+  cards.innerHTML = ""; // limpiar antes de renderizar
 
-// CONTADOR
-const total = list.filter(p => p.estado !== "vacante").length;
-const vacantes = list.filter(p => p.estado === "vacante").length;
+  // CONTADOR
+  const total = list.filter(p => p.estado !== "vacante").length;
+  const vacantes = list.filter(p => p.estado === "vacante").length;
 
-document.getElementById("total").innerText = "👥 Empleados: " + total;
-document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
+  document.getElementById("total").innerText = "👥 Empleados: " + total;
+  document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
 
-cards.innerHTML+=`
- <div class="card ${p.oficina.toLowerCase().replace(/\s/g,'-')}">
-  <div class="admin">
-   <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
-   <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
-  </div>
-  <h3>
-${p.estado==="vacante" ? "🔴 VACANTE" : highlight(p.nombre)}
-</h3>
-
-${p.estado==="vacante"
- ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>'
- : ''}
-  <p>${highlight(p.puesto)}</p>
-  <p>${highlight(p.area)}</p>
-  <span class="badge">${p.oficina}</span>
-  <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
-  <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
-  <div class="actions">
-   <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
-   <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
-   <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-  </div>
- </div>`;
- });
+  // Recorrer cada elemento de la lista
+  list.forEach(p => {
+    cards.innerHTML += `
+      <div class="card ${p.oficina.toLowerCase().replace(/\s/g,'-')}">
+        <div class="admin">
+          <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
+          <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
+        </div>
+        <h3>${p.estado==="vacante" ? "🔴 VACANTE" : highlight(p.nombre)}</h3>
+        ${p.estado==="vacante"
+          ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>'
+          : ''}
+        <p>${highlight(p.puesto)}</p>
+        <p>${highlight(p.area)}</p>
+        <span class="badge">${p.oficina}</span>
+        <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
+        <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
+        <div class="actions">
+          <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+          <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+          <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    `;
+  });
 }
 
 window.copyText=(el,text)=>{
