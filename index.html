@@ -1,428 +1,333 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- <link rel="icon" href="logo-caherengo.png.jpg">
-<link rel="apple-touch-icon" href="logo-caherengo.png">
-<meta charset="UTF-8">
-<title>Directorio General | CAHERENGO</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="logo-caherengo.png.jpg">
+  <link rel="apple-touch-icon" href="logo-caherengo.png">
+  <meta charset="UTF-8">
+  <title>Directorio General | CAHERENGO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a2e0e9c6f4.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e9c6f4.js" crossorigin="anonymous"></script>
 
-<style>
-:root{
- --blue:#2563eb;
- --bg:#020617;
- --card:#0f172a;
- --muted:#94a3b8;
-}
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,Helvetica,sans-serif;
- background:linear-gradient(180deg,#0f172a,#020617);
- color:#fff;
-}
+  <style>
+    :root {
+      --blue: #2563eb;
+      --bg: #020617;
+      --card: #0f172a;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0f172a, #020617);
+      color: #fff;
+    }
 
-/* HEADER */
-header{
- background:linear-gradient(90deg,#2563eb,#1e40af);
- padding:28px 20px;
- text-align:center;
- position:relative;
-}
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #2563eb, #1e40af);
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+    }
 
-header h1{margin:0}
-header p{margin:6px 0 0}
+    header h1 { margin: 0; }
+    header p { margin: 6px 0 0; }
 
-/* MAPAS */
-.map-links{
- margin-top:16px;
- display:flex;
- justify-content:center;
- gap:26px;
-}
-.map-links a{
- text-decoration:none;
- color:white;
- display:flex;
- flex-direction:column;
- align-items:center;
- gap:6px;
- padding:12px;
- border-radius:14px;
- background:rgba(255,255,255,.18);
- transition:.3s;
- width:140px;
-}
-.map-links a:hover{
- background:rgba(255,255,255,.32);
- transform:translateY(-4px);
-}
-.map-links i{font-size:28px}
-.map-links span{
- font-size:12px;
- line-height:1.3;
- text-align:center;
-}
+    /* SEARCH */
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin: 26px 0 10px;
+    }
+    .search-box input {
+      width: 90%;
+      max-width: 420px;
+      padding: 12px 18px;
+      border-radius: 24px;
+      border: none;
+      outline: none;
+      transition: .25s;
+    }
+    .search-box input:focus {
+      transform: scale(1.03);
+      box-shadow: 0 0 0 2px #2563eb;
+    }
 
-/* SEARCH */
-.search-box{
- display:flex;
- justify-content:center;
- margin:26px 0 10px;
-}
-.search-box input{
- width:90%;
- max-width:420px;
- padding:12px 18px;
- border-radius:24px;
- border:none;
- outline:none;
- transition:.25s;
-}
+    /* FILTERS */
+    .filters {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .filter {
+      padding: 6px 14px;
+      border-radius: 16px;
+      background: #020617;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-size: 12px;
+    }
 
-.search-box input:focus{
- transform:scale(1.03);
- box-shadow:0 0 0 2px #2563eb;
-}
+    .filter.todas { border-color: #fff; color: #fff; background-color: transparent; }
+    .filter.zapopan { border-color: rgba(37,99,235,1); color: rgba(37,99,235,1); }
+    .filter.tlajomulco { border-color: rgba(16,185,129,1); color: rgba(16,185,129,1); }
+    .filter.aguascalientes { border-color: rgba(251,191,36,1); color: rgba(251,191,36,1); }
+    .filter.guerrero-negro { border-color: rgba(249,115,22,1); color: rgba(249,115,22,1); }
+    .filter.merida { border-color: rgba(236,72,153,1); color: rgba(236,72,153,1); }
 
-/* FILTERS */
-.filters{
- display:flex;
- gap:8px;
- justify-content:center;
- flex-wrap:wrap;
- margin-bottom:20px;
-}
-.filter{
- padding:6px 14px;
- border-radius:16px;
- background:#020617;
- border:1px solid #334155;
- cursor:pointer;
- font-size:12px;
-}
+    .filter.active {
+      background-color: rgba(0,0,0,0);
+      color: currentColor;
+      border-width: 2px;
+    }
 
-/* FILTROS COLOREADOS POR OFICINA */
-.filter.todas { 
-  border-color: #fff; /* borde blanco */
-  color: #fff;        /* texto blanco */
-  background-color: transparent; /* fondo transparente */
-}
-.filter.zapopan { border-color: rgba(37,99,235,1); color: rgba(37,99,235,1); }
-.filter.tlajomulco { border-color: rgba(16,185,129,1); color: rgba(16,185,129,1); }
-.filter.aguascalientes { border-color: rgba(251,191,36,1); color: rgba(251,191,36,1); }
-.filter.guerrero-negro { border-color: rgba(249,115,22,1); color: rgba(249,115,22,1); }
-.filter.merida { border-color: rgba(236,72,153,1); color: rgba(236,72,153,1); }
+    /* CARDS */
+    .container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .card {
+      background: rgba(15,23,42,.95);
+      border-radius: 18px;
+      padding: 20px;
+      width: 100%;
+      position: relative;
+      animation: fadeIn .25s ease;
+      transition: all .25s ease;
+      border: 1px solid rgba(255,255,255,.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
 
-/* Mantener efecto de filtro activo solo en el borde, sin fondo */
-.filter.active {
-  background-color: rgba(0,0,0,0); /* transparente */
-  color: currentColor;             /* mantiene el color del borde/texto */
-  border-width: 2px;               /* opcional: hacer el borde un poco más visible */
-}
- 
-/* CARDS */
-.container{
- padding:20px;
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
- gap:20px;
- max-width:1200px;
- margin:auto;
-}
-.card{
- background:rgba(15,23,42,.95);
- border-radius:18px;
- padding:20px;
- width:100%;
- position:relative;
- animation:fadeIn .25s ease;
- transition:all .25s ease;
- border:1px solid rgba(255,255,255,.05);
+    .card.zapopan { border-color: rgba(37, 99, 235, 0.3); }
+    .card.tlajomulco { border-color: rgba(16, 185, 129, 0.3); }
+    .card.aguascalientes { border-color: rgba(251, 191, 36, 0.3); }
+    .card.guerrero-negro { border-color: rgba(249, 115, 22, 0.3); }
+    .card.merida { border-color: rgba(236, 72, 153, 0.3); }
 
- display:flex;
- flex-direction:column;
- justify-content:space-between;
- min-height:260px;
-}
-/* BORDES SUAVES POR OFICINA */
-.card.zapopan { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-.card.tlajomulco { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-.card.aguascalientes { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-.card.guerrero-negro { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-.card.merida { border-color: rgba(16, 185, 129, 0.25); }   /* Verde tenue */
-/* ANIMACIÓN HOVER */
-.card:hover{
- transform:translateY(-6px) scale(1.02);
- box-shadow:0 18px 40px rgba(0,0,0,.45);
- border:1px solid rgba(37,99,235,.6);
-}
-@keyframes fadeIn{
- from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:none}
-}
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      border: 1px solid rgba(37,99,235,.6);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
 
-/* BADGES POR OFICINA — borde más visible dentro de la tarjeta */
-.badge {
-  display:inline-block;
-  font-size:11px;
-  padding:4px 10px;
-  border-radius:14px;
-  background:#020617;
-  border:2px solid; /* aumenta el grosor */
-  margin-top:4px;
-  color:var(--muted);
-  width:fit-content;
-}
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 14px;
+      background: #020617;
+      border: 2px solid;
+      margin-top: 4px;
+      color: var(--muted);
+      width: fit-content;
+    }
+    .badge.zapopan { border-color: rgba(37, 99, 235, 1); }
+    .badge.tlajomulco { border-color: rgba(16, 185, 129, 1); }
+    .badge.aguascalientes { border-color: rgba(251, 191, 36, 1); }
+    .badge.guerrero-negro { border-color: rgba(249, 115, 22, 1); }
+    .badge.merida { border-color: rgba(236, 72, 153, 1); }
 
-/* BADGES POR OFICINA — colores distintivos */
-.badge.zapopan { border-color: rgba(37, 99, 235, 1); }       /* Azul */
-.badge.tlajomulco { border-color: rgba(16, 185, 129, 1); }   /* Verde */
-.badge.aguascalientes { border-color: rgba(251, 191, 36, 1); } /* Amarillo */
-.badge.guerrero-negro { border-color: rgba(249, 115, 22, 1); } /* Naranja */
-.badge.merida { border-color: rgba(236, 72, 153, 1); }       /* Rosa */
-}
+    .admin i {
+      font-size: 14px;
+      cursor: pointer;
+      opacity: .6;
+      transition: .2s;
+      margin-left: 6px;
+    }
+    .admin i:hover {
+      opacity: 1;
+      transform: scale(1.2);
+      color: #60a5fa;
+    }
 
-.admin i{
- font-size:14px;
- cursor:pointer;
- opacity:.6;
- transition:.2s;
-}
+    .copy {
+      background: #020617;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-top: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: .2s;
+      word-break: break-word;
+      display: inline-block;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .copy::after {
+      content: "Copiar";
+      position: absolute;
+      top: -26px;
+      right: 10px;
+      background: var(--blue);
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      opacity: 0;
+      transition: .2s;
+    }
+    .copy:hover::after { opacity: 1; }
+    .copy.copied::after {
+      content: "✔ Copiado";
+      background: #16a34a;
+      opacity: 1;
+    }
 
-.admin i:hover{
- opacity:1;
- transform:scale(1.2);
- color:#60a5fa;
-}
-.admin i:hover{opacity:1}
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .actions a {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      color: #fff;
+      transition: all .2s ease;
+    }
+    .actions a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+    .mail { background: #2563eb; }
+    .phone { background: #10b981; }
+    .chat { background: #22c55e; }
 
-.copy{
- background:#020617;
- padding:8px 12px;
- border-radius:10px;
- margin-top:8px;
- cursor:pointer;
- position:relative;
- transition:.2s;
- word-break:break-word;
+    .highlight {
+      background: rgba(37,99,235,.25);
+      padding: 0 4px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
 
- display:inline-block;
- width:fit-content;
- max-width:100%;
-}
-.copy::after{
- content:"Copiar";
- position:absolute;
- top:-26px;
- right:10px;
- background:var(--blue);
- padding:3px 8px;
- border-radius:8px;
- font-size:11px;
- opacity:0;
- transition:.2s;
-}
-.copy:hover::after{opacity:1}
-.copy.copied::after{
- content:"✔ Copiado";
- background:#16a34a;
- opacity:1;
-}
+    /* FAB */
+    .fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      transition: all .25s ease;
+      z-index: 99;
+    }
+    .fab:hover {
+      transform: scale(1.15) rotate(90deg);
+      box-shadow: 0 14px 40px rgba(37,99,235,.6);
+    }
+    .fab:active { transform: scale(.95); }
 
-.actions{
- display:flex;
- gap:10px;
- margin-top:14px;
-}
-.actions a{
- flex:1;
- text-align:center;
- padding:10px;
- border-radius:12px;
- color:#fff;
- transition:all .2s ease;
-}
-
-.actions a:hover{
- transform:scale(1.08);
- box-shadow:0 6px 18px rgba(0,0,0,.35);
-}
-.mail{background:#2563eb}
-.phone{background:#10b981}
-.chat{background:#22c55e}
-
-.highlight{
- background:rgba(37,99,235,.25);
- padding:0 4px;
- border-radius:6px;
- font-weight:600;
-}
-
-/* FAB */
-.fab{
- position:fixed;
- bottom:24px;
- right:24px;
- width:56px;
- height:56px;
- border-radius:50%;
- background:var(--blue);
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:26px;
- cursor:pointer;
- box-shadow:0 10px 30px rgba(0,0,0,.4);
- transition:all .25s ease;
-}
-
-/* animación al pasar el cursor */
-.fab:hover{
- transform:scale(1.15) rotate(90deg);
- box-shadow:0 14px 40px rgba(37,99,235,.6);
-}
-
-/* efecto al hacer click */
-.fab:active{
- transform:scale(.95);
-}
-/* MODALS */
-.modal{
- position:fixed;
- inset:0;
- background:rgba(0,0,0,.6);
- backdrop-filter:blur(4px);
- display:none;
- align-items:center;
- justify-content:center;
-}
-.box{
- background:#020617;
- padding:20px;
- border-radius:18px;
- width:90%;
- max-width:380px;
- animation:scaleIn .2s ease;
-}
-@keyframes scaleIn{
- from{transform:scale(.95);opacity:0}
- to{transform:none;opacity:1}
-}
-.box input,select{
- width:100%;
- margin-top:10px;
- padding:12px;
- border-radius:10px;
- border:1px solid #334155;
- background:#020617;
- color:#fff;
-}
-.modal-actions{
- display:flex;
- gap:10px;
- margin-top:16px;
-}
-button{
- flex:1;
- padding:10px;
- border-radius:10px;
- border:none;
- cursor:pointer;
-}
-.save{background:var(--blue);color:#fff}
-.cancel{background:#020617;color:var(--muted);border:1px solid #334155}
-</style>
+    /* MODALS */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .box {
+      background: #020617;
+      padding: 20px;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 380px;
+      animation: scaleIn .2s ease;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(.95); opacity: 0; }
+      to { transform: none; opacity: 1; }
+    }
+    .box input, select {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #020617;
+      color: #fff;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    .save { background: var(--blue); color: #fff; }
+    .cancel { background: #020617; color: var(--muted); border: 1px solid #334155; }
+  </style>
 </head>
 
 <body>
 
 <header>
+  <div id="stats" style="
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(0,0,0,.25);
+    padding: 6px 12px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+  ">
+    <span id="total">👥 Empleados: 0</span>
+    <span id="vacantes">🔴 Vacantes: 0</span>
+  </div>
 
-<div id="stats" style="
-position:absolute;
-top:18px;
-right:20px;
-display:flex;
-gap:16px;
-font-size:13px;
-font-weight:600;
-background:rgba(0,0,0,.25);
-padding:6px 12px;
-border-radius:10px;
-backdrop-filter:blur(4px);
-">
-
-<span id="total">👥 Empleados: 0</span>
-<span id="vacantes">🔴 Vacantes: 0</span>
-
-</div>
-
-  <img src="logo-caherengo.png.jpg" alt="CAHERENGO"
-       style="width:100px;border-radius:14px;
-              box-shadow:0 8px 20px rgba(0,0,0,.25);
-              margin-bottom:12px;">
+  <img src="logo-caherengo.png.jpg" alt="CAHERENGO" style="width:100px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.25);margin-bottom:12px;">
 
   <h1>Directorio General</h1>
   <p><b>CAHERENGO · Uso interno</b></p>
 
-<div style="
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:10px;
-">
-  <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 1 Servicios Caherengo
-  </a>
+  <div style="display:flex; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap;">
+    <a href="https://www.google.com/maps/d/edit?mid=1ky2K4xB6tZ_UlTOiZLKZi6NDBbx8dqw" target="_blank" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:12px;backdrop-filter:blur(4px);">
+      📍 Mapa 1 Servicios Caherengo
+    </a>
+    <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ" target="_blank" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:12px;backdrop-filter:blur(4px);">
+      📍 Mapa 2 Servicios Caherengo
+    </a>
+    <a href="https://www.google.com/maps/d/edit?mid=1-nxuaRWj5F-qmUFGHka1rxC9nlWd8Q8&usp=sharing" target="_blank" style="padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:12px;backdrop-filter:blur(4px);">
+      📍 Mapa 3 Servicios Comude
+    </a>
+  </div>
+</header>
 
-  <a href="https://www.google.com/maps/d/edit?mid=1zCXZ6FC6wuHO966gPZR0z8sjIqUwAQQ"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 2 Servicios Caherengo
-  </a>
-
- <a href="https://www.google.com/maps/d/edit?mid=1-nxuaRWj5F-qmUFGHka1rxC9nlWd8Q8&usp=sharing"
-     target="_blank"
-     style="
-       padding:6px 14px;
-       border-radius:999px;
-       background:rgba(255,255,255,.08);
-       border:1px solid rgba(255,255,255,.18);
-       color:#fff;
-       text-decoration:none;
-       font-size:12px;
-       backdrop-filter:blur(4px);
-     ">
-     📍 Mapa 3 Servicios Comude
-  </a>
-
- 
-</div>
- </header>
 <div style="display:flex; justify-content:center;">
   <button onclick="exportarCSV()" style="
     margin-top:14px;
@@ -437,21 +342,21 @@ backdrop-filter:blur(4px);
     max-width:max-content;
     display:inline-block;
   ">
-  📥 Descargar directorio (CSV)
+    📥 Descargar directorio (Excel / CSV)
   </button>
 </div>
 
 <div class="search-box">
-<input id="search" placeholder="🔍 Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
+  <input id="search" placeholder="🔍 Buscar por nombre, área, correo, teléfono u oficina..." onkeyup="applyFilters()">
 </div>
 
 <div class="filters">
   <div class="filter todas active" onclick="setOffice('', this)">Todas</div>
   <div class="filter zapopan" onclick="setOffice('Zapopan', this)">Zapopan</div>
-<div class="filter tlajomulco" onclick="setOffice('Tlajomulco', this)">Tlajomulco</div>
-<div class="filter aguascalientes" onclick="setOffice('Aguascalientes', this)">Aguascalientes</div>
-<div class="filter guerrero-negro" onclick="setOffice('Guerrero Negro', this)">Guerrero Negro</div>
-<div class="filter merida" onclick="setOffice('Mérida', this)">Mérida</div>
+  <div class="filter tlajomulco" onclick="setOffice('Tlajomulco', this)">Tlajomulco</div>
+  <div class="filter aguascalientes" onclick="setOffice('Aguascalientes', this)">Aguascalientes</div>
+  <div class="filter guerrero-negro" onclick="setOffice('Guerrero Negro', this)">Guerrero Negro</div>
+  <div class="filter merida" onclick="setOffice('Mérida', this)">Mérida</div>
 </div>
 
 <div class="container" id="cards"></div>
@@ -460,229 +365,252 @@ backdrop-filter:blur(4px);
 
 <!-- FORM -->
 <div class="modal" id="formModal">
-<div class="box">
-<h3 id="formTitle">Agregar</h3>
-<input id="nombre" placeholder="Nombre completo">
-<input id="puesto" placeholder="Puesto">
-<input id="area" placeholder="Área">
-<select id="oficina">
-<option>Zapopan</option>
-<option>Tlajomulco</option>
-<option>Aguascalientes</option>
-<option>Guerrero Negro</option>
-<option>Mérida</option>
-</select>
-<input id="correo" placeholder="Correo">
-<input id="telefono" placeholder="Teléfono">
- <select id="estado">
-  <option value="activo">🟢 Activo</option>
-  <option value="vacante">🔴 Vacante</option>
-  <option value="capacitacion">🟡 En capacitación</option>
-</select>
-<div class="modal-actions">
-<button class="save" onclick="save()">Guardar</button>
-<button class="cancel" onclick="closeForm()">Cancelar</button>
-</div>
-</div>
+  <div class="box">
+    <h3 id="formTitle">Agregar</h3>
+    <input id="nombre" placeholder="Nombre completo">
+    <input id="puesto" placeholder="Puesto">
+    <input id="area" placeholder="Área">
+    <select id="oficina">
+      <option>Zapopan</option>
+      <option>Tlajomulco</option>
+      <option>Aguascalientes</option>
+      <option>Guerrero Negro</option>
+      <option>Mérida</option>
+    </select>
+    <input id="correo" placeholder="Correo">
+    <input id="telefono" placeholder="Teléfono">
+    <select id="estado">
+      <option value="activo">🟢 Activo</option>
+      <option value="vacante">🔴 Vacante</option>
+      <option value="capacitacion">🟡 En capacitación</option>
+    </select>
+    <div class="modal-actions">
+      <button class="save" onclick="save()">Guardar</button>
+      <button class="cancel" onclick="closeForm()">Cancelar</button>
+    </div>
+  </div>
 </div>
 
 <!-- PASSWORD -->
 <div class="modal" id="passModal">
-<div class="box">
-<h3>Acceso administrador</h3>
-<input id="pass" type="password" placeholder="Clave">
-<div class="modal-actions">
-<button class="save" onclick="checkPass()">Continuar</button>
-<button class="cancel" onclick="closePass()">Cancelar</button>
-</div>
-</div>
+  <div class="box">
+    <h3>Acceso administrador</h3>
+    <input id="pass" type="password" placeholder="Clave">
+    <div class="modal-actions">
+      <button class="save" onclick="checkPass()">Continuar</button>
+      <button class="cancel" onclick="closePass()">Cancelar</button>
+    </div>
+  </div>
 </div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig={
- apiKey:"AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
- authDomain:"directorio-caherengo.firebaseapp.com",
- projectId:"directorio-caherengo"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCYREpFqzorJ_f30tQte7W1aXT6ikU0nQ4",
+    authDomain: "directorio-caherengo.firebaseapp.com",
+    projectId: "directorio-caherengo"
+  };
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-const col=collection(db,"directorio");
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const col = collection(db, "directorio");
 
-let allData=[],editId=null,afterPass=null,officeFilter="";
+  let allData = [], editId = null, afterPass = null, officeFilter = "";
 
-onSnapshot(col,s=>{
- allData=[];
- s.forEach(d=>allData.push({id:d.id,...d.data()}));
- applyFilters();
-});
-
-// Normalizar nombre de oficina para clases CSS (quita acentos y espacios)
-function normalizeOffice(name) {
-  return name.toLowerCase()
-             .normalize("NFD")               // separar letras de acentos
-             .replace(/[\u0300-\u036f]/g,"") // quitar acentos
-             .replace(/\s/g,'-');            // espacios → guiones
-} 
-
-function highlight(text){
- const q=search.value.toLowerCase();
- if(!q) return text;
- return text.replace(new RegExp(q,"gi"),m=>`<span class="highlight">${m}</span>`);
-}
-
-function render(list){
-  const cards = document.getElementById("cards");
-  cards.innerHTML = ""; // limpiar antes de renderizar
-
-  // CONTADORES
-  const total = list.filter(p => p.estado !== "vacante").length;
-  const vacantes = list.filter(p => p.estado === "vacante").length;
-
-  document.getElementById("total").innerText = "👥 Empleados: " + total;
-  document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
-
-  // Recorrer la lista
-  list.forEach(p => {
-    cards.innerHTML += `
-      <div class="card ${normalizeOffice(p.oficina)}">
-        <div class="admin">
-          <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
-          <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
-        </div>
-
-        <h3>${p.estado === "vacante" ? "🔴 VACANTE" : highlight(p.nombre)}</h3>
-
-        ${p.estado === "vacante"
-          ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>'
-          : ''}
-
-        <p>${highlight(p.puesto)}</p>
-        <p>${highlight(p.area)}</p>
-
-        <!-- Badge de oficina -->
-        <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina}</span>
-
-        <div class="copy" onclick="copyText(this,'${p.correo}')">${highlight(p.correo)}</div>
-        <div class="copy" onclick="copyText(this,'${p.telefono}')">${highlight(p.telefono)}</div>
-
-        <div class="actions">
-          <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
-          <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
-          <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
-        </div>
-      </div>
-    `;
+  onSnapshot(col, s => {
+    allData = [];
+    s.forEach(d => allData.push({ id: d.id, ...d.data() }));
+    applyFilters();
   });
-}
 
-window.copyText=(el,text)=>{
- navigator.clipboard.writeText(text);
- el.classList.add("copied");
- setTimeout(()=>el.classList.remove("copied"),1200);
-}
+  // Normalizar nombre de oficina para clases CSS
+  function normalizeOffice(name) {
+    if (!name) return "";
+    return name.toLowerCase()
+               .normalize("NFD")
+               .replace(/[\u0300-\u036f]/g, "")
+               .replace(/\s/g, '-');
+  } 
 
-window.applyFilters = () => {
-  const q = search.value.toLowerCase();
-  render(allData.filter(p =>
-    (!officeFilter || normalizeOffice(p.oficina) === normalizeOffice(officeFilter)) &&
-    (p.nombre + p.area + p.correo + p.telefono + p.oficina).toLowerCase().includes(q)
-  ));
-}
-
-window.setOffice=(office, el)=>{
-  officeFilter = office;
-  document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
-  if(el) el.classList.add("active");
-  applyFilters();
-}
-
-window.askPass=fn=>{
- afterPass=fn;
- passModal.style.display="flex";
-}
-
-window.checkPass=()=>{
- if(pass.value==="KR@+0s117"){
-  passModal.style.display="none";
-  pass.value="";
-  afterPass();
- }
-}
-
-window.openForm=()=>{
- editId=null;
- formTitle.innerText="Agregar";
- formModal.style.display="flex";
-}
-
-window.edit=id=>{
- const p=allData.find(x=>x.id===id);
- editId=id;
- nombre.value=p.nombre;
- puesto.value=p.puesto;
- area.value=p.area;
- oficina.value=p.oficina;
- correo.value=p.correo;
- telefono.value=p.telefono;
- formTitle.innerText="Editar";
- formModal.style.display="flex";
-}
-
- window.save=async()=>{
- const obj={
-  nombre:nombre.value,
-  puesto:puesto.value,
-  area:area.value,
-  oficina:oficina.value,
-  correo:correo.value,
-  telefono:telefono.value,
-  estado:estado.value
- };
-
- editId
-  ? await updateDoc(doc(db,"directorio",editId),obj)
-  : await addDoc(col,obj);
-
- closeForm();
-}
-
-window.remove=async id=>{
- await deleteDoc(doc(db,"directorio",id));
-}
-
-window.closeForm=()=>formModal.style.display="none";
-window.closePass=()=>passModal.style.display="none";
-
-
-
-
-// EXPORTAR DIRECTORIO A CSV (OUTLOOK / EXCEL)
-window.exportarCSV = () => {
-  if (!allData.length) {
-    alert("No hay datos para exportar");
-    return;
+  function highlight(text) {
+    if (!text) return "";
+    const q = search.value.toLowerCase();
+    if (!q) return text;
+    return text.replace(new RegExp(q, "gi"), m => `<span class="highlight">${m}</span>`);
   }
 
-  let csv = "Nombre,Puesto,Área,Correo,Teléfono,Oficina\n";
+  function render(list) {
+    const cards = document.getElementById("cards");
+    cards.innerHTML = "";
 
-  allData.forEach(p => {
-    csv += `"${p.nombre}","${p.puesto}","${p.area}","${p.correo}","${p.telefono}","${p.oficina}"\n`;
-  });
+    // CONTADORES
+    const total = list.filter(p => p.estado !== "vacante").length;
+    const vacantes = list.filter(p => p.estado === "vacante").length;
 
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
+    document.getElementById("total").innerText = "👥 Empleados: " + total;
+    document.getElementById("vacantes").innerText = "🔴 Vacantes: " + vacantes;
 
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "Directorio_CAHERENGO.csv";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
+    list.forEach(p => {
+      cards.innerHTML += `
+        <div class="card ${normalizeOffice(p.oficina)}">
+          <div class="admin" style="position: absolute; top: 16px; right: 16px;">
+            <i class="bi bi-pencil" onclick="askPass(()=>edit('${p.id}'))"></i>
+            <i class="bi bi-trash" onclick="askPass(()=>remove('${p.id}'))"></i>
+          </div>
+
+          <h3>${p.estado === "vacante" ? "🔴 VACANTE" : highlight(p.nombre)}</h3>
+
+          ${p.estado === "vacante" 
+            ? '<span class="badge" style="background:#7f1d1d;border-color:#ef4444;color:#fecaca">Puesto disponible</span>' 
+            : ''}
+
+          <p><b>Puesto:</b> ${highlight(p.puesto || '')}</p>
+          <p><b>Área:</b> ${highlight(p.area || '')}</p>
+
+          <span class="badge ${normalizeOffice(p.oficina)}">${p.oficina || 'Sin oficina'}</span>
+
+          <div class="copy" onclick="copyText(this,'${p.correo || ''}')">${highlight(p.correo || '')}</div>
+          <div class="copy" onclick="copyText(this,'${p.telefono || ''}')">${highlight(p.telefono || '')}</div>
+
+          <div class="actions">
+            <a class="mail" href="mailto:${p.correo}"><i class="bi bi-envelope"></i></a>
+            <a class="phone" href="tel:${p.telefono}"><i class="bi bi-telephone"></i></a>
+            <a class="chat" href="https://wa.me/52${p.telefono}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  window.copyText = (el, text) => {
+    if (!text) return;
+    navigator.clipboard.writeText(text);
+    el.classList.add("copied");
+    setTimeout(() => el.classList.remove("copied"), 1200);
+  };
+
+  window.applyFilters = () => {
+    const q = search.value.toLowerCase();
+    render(allData.filter(p =>
+      (!officeFilter || normalizeOffice(p.oficina) === normalizeOffice(officeFilter)) &&
+      ((p.nombre || "") + (p.area || "") + (p.correo || "") + (p.telefono || "") + (p.oficina || "")).toLowerCase().includes(q)
+    ));
+  };
+
+  window.setOffice = (office, el) => {
+    officeFilter = office;
+    document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
+    if (el) el.classList.add("active");
+    applyFilters();
+  };
+
+  window.askPass = fn => {
+    afterPass = fn;
+    document.getElementById("passModal").style.display = "flex";
+  };
+
+  window.checkPass = () => {
+    const passInput = document.getElementById("pass");
+    if (passInput.value === "KR@+0s117") {
+      document.getElementById("passModal").style.display = "none";
+      passInput.value = "";
+      if (afterPass) afterPass();
+    } else {
+      alert("Contraseña incorrecta");
+    }
+  };
+
+  window.openForm = () => {
+    editId = null;
+    document.getElementById("formTitle").innerText = "Agregar";
+    document.getElementById("nombre").value = "";
+    document.getElementById("puesto").value = "";
+    document.getElementById("area").value = "";
+    document.getElementById("correo").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("estado").value = "activo";
+    document.getElementById("formModal").style.display = "flex";
+  };
+
+  window.edit = id => {
+    const p = allData.find(x => x.id === id);
+    if (!p) return;
+    editId = id;
+    document.getElementById("nombre").value = p.nombre || "";
+    document.getElementById("puesto").value = p.puesto || "";
+    document.getElementById("area").value = p.area || "";
+    document.getElementById("oficina").value = p.oficina || "Zapopan";
+    document.getElementById("correo").value = p.correo || "";
+    document.getElementById("telefono").value = p.telefono || "";
+    document.getElementById("estado").value = p.estado || "activo";
+    document.getElementById("formTitle").innerText = "Editar";
+    document.getElementById("formModal").style.display = "flex";
+  };
+
+  window.save = async () => {
+    const obj = {
+      nombre: document.getElementById("nombre").value,
+      puesto: document.getElementById("puesto").value,
+      area: document.getElementById("area").value,
+      oficina: document.getElementById("oficina").value,
+      correo: document.getElementById("correo").value,
+      telefono: document.getElementById("telefono").value,
+      estado: document.getElementById("estado").value
+    };
+
+    editId
+      ? await updateDoc(doc(db, "directorio", editId), obj)
+      : await addDoc(col, obj);
+
+    closeForm();
+  };
+
+  window.remove = async id => {
+    if (confirm("¿Seguro que deseas eliminar este registro?")) {
+      await deleteDoc(doc(db, "directorio", id));
+    }
+  };
+
+  window.closeForm = () => document.getElementById("formModal").style.display = "none";
+  window.closePass = () => document.getElementById("passModal").style.display = "none";
+
+  // EXPORTAR DIRECTORIO A EXCEL / CSV CON FORMATO OPTIMIZADO
+  window.exportarCSV = () => {
+    if (!allData.length) {
+      alert("No hay datos para exportar");
+      return;
+    }
+
+    // Encabezados claros
+    let csv = "Nombre,Puesto,Área,Correo Electrónico,Teléfono,Oficina,Estado\n";
+
+    allData.forEach(p => {
+      // Limpiar comillas para evitar rupturas de celdas en Excel
+      const nombre = (p.nombre || "").replace(/"/g, '""');
+      const puesto = (p.puesto || "").replace(/"/g, '""');
+      const area = (p.area || "").replace(/"/g, '""');
+      const correo = (p.correo || "").replace(/"/g, '""');
+      const telefono = (p.telefono || "").replace(/"/g, '""');
+      const oficina = (p.oficina || "").replace(/"/g, '""');
+      const estado = (p.estado || "activo").toUpperCase();
+
+      csv += `"${nombre}","${puesto}","${area}","${correo}","${telefono}","${oficina}","${estado}"\n`;
+    });
+
+    // Se agrega el caracter BOM (\uFEFF) para forzar a Excel a leer UTF-8 con tildes y eñes
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Directorio_CAHERENGO.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 </script>
 
 </body>
